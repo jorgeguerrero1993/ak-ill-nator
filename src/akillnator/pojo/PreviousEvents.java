@@ -1,7 +1,7 @@
 package akillnator.pojo;
 
 import java.io.Serializable;
-//hello
+//hello it me
 public class PreviousEvents implements Serializable{
 	/**
 	 * 
