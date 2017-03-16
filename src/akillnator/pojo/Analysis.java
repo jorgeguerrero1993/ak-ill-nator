@@ -12,6 +12,7 @@ public class Analysis implements Serializable {
 	private Integer illness_id;
 	
 	
+	public Illness FK= new Illness ();
 	
 	public Analysis() {
 		super();
