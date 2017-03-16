@@ -1,5 +1,7 @@
 package akillnator.pojo;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Treatment implements Serializable{
 
@@ -10,7 +12,7 @@ public class Treatment implements Serializable{
 	private Integer id;
 	private String name ;
 	private String type;
-	
+	public List <Illness> IllnessList = new ArrayList <>();
 	//Empty constructor
 	public Treatment() {
 		super();
