@@ -9,6 +9,7 @@ public class Illness {
 	private String text;
 	private String aprox_duration;
 	private Treatment treatment_id; //Es una fk, no meterlo en el toString
+	//List de  analysys
 	
 	//Empty constructor
 	public Illness() {
