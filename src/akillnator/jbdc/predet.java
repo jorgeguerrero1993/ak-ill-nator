@@ -1,4 +1,4 @@
-package akillnator.db;
+package akillnator.jbdc;
 
 public class predet {
 
