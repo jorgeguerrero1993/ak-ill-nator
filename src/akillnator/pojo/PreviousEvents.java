@@ -3,9 +3,7 @@ package akillnator.pojo;
 import java.io.Serializable;
 //hello it me
 public class PreviousEvents implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 2900707925162426155L;
 	
 	private Integer id;

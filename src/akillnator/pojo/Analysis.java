@@ -3,15 +3,11 @@ import java.io.Serializable;
 
 public class Analysis implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2545657309934633583L;
+	
 	private Integer id;
 	private String name ;
 	private Integer illness_id;
-	
-	//
 	public Illness FK= new Illness ();
 	
 	public Analysis() {
@@ -73,7 +69,6 @@ public class Analysis implements Serializable {
 			return false;
 		return true;
 	}
-	
 	
 	
 }

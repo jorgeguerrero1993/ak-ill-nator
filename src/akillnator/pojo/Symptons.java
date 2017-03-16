@@ -3,9 +3,7 @@ package akillnator.pojo;
 import java.io.Serializable;
 
 public class Symptons implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4762337477636000539L;
 	
 	private Integer id;

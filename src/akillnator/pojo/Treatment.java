@@ -5,14 +5,13 @@ import java.util.List;
 
 public class Treatment implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6224732364028493645L;
+	
 	private Integer id;
 	private String name ;
 	private String type;
 	public List <Illness> IllnessList = new ArrayList <>();
+	
 	//Empty constructor
 	public Treatment() {
 		super();

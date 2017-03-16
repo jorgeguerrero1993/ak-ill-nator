@@ -3,9 +3,7 @@ package akillnator.pojo;
 import java.io.Serializable;
 
 public class Patient implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -8841012208499645685L;
 	
 	private  Integer id;
