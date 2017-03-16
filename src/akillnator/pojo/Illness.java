@@ -1,53 +1,74 @@
 package akillnator.pojo;
 import java.io.Serializable;
+import java.util.*;
 
-public class Illness {
+public class Illness implements Serializable {
+	
+	private static final long serialVersionUID = -6017147906365330498L;
 	
 	//Atributes
 	private Integer id;
 	private String name;
 	private String text;
 	private String aprox_duration;
-	private Treatment treatment_id; //Es una fk, no meterlo en el toString
-	//List de  analysis
+	private Treatment treatment_id; //% Es una fk, no meterlo en el toString
+	private List <Analysis> AnalysisList = new ArrayList<>(); //% Tampoco meter en el toString
 	
 	//Empty constructor
 	public Illness() {
 		super();
 	}
 	
-	//Getter and seter
+	//Getter and setter
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getText() {
 		return text;
 	}
+
 	public void setText(String text) {
 		this.text = text;
 	}
+
 	public String getAprox_duration() {
 		return aprox_duration;
 	}
+
 	public void setAprox_duration(String aprox_duration) {
 		this.aprox_duration = aprox_duration;
 	}
-/**	public Integer getTreatment_id() {
+
+	public Treatment getTreatment_id() {
 		return treatment_id;
 	}
-	public void setTreatment_id(Integer treatment_id) {
-		this.Treatment = treatment_id;
+
+	public void setTreatment_id(Treatment treatment_id) {
+		this.treatment_id = treatment_id;
 	}
-**/
+
+	public List<Analysis> getAnalysisList() {
+		return AnalysisList;
+	}
+
+	public void setAnalysisList(List<Analysis> analysisList) {
+		AnalysisList = analysisList;
+	}
+
+	
 	//Hashcode
 	@Override
 	public int hashCode() {

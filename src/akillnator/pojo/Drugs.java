@@ -5,17 +5,17 @@ public class Drugs implements Serializable {
 	
 	private static final long serialVersionUID = -6779814022757918122L;
 	
-	//Atributes drugs
+	//Atributes
 	private Integer ID;
 	private String name;
 	private String warnings;
 	
-	//Constructor vacío
+	//Empty constructor
 	public Drugs() {
 		super();
 	}
 
-	//Getter y setter
+	//Getter and setter
 	public int getID() {
 		return ID;
 	}
