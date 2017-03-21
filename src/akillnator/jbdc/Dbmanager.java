@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import akillnator.pojo.Patient;
+
 public class Dbmanager {
 	
 	
@@ -13,7 +15,7 @@ public class Dbmanager {
 		
 	}
 	
-	public void connect(){
+	public void Connect(){
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c=DriverManager.getConnection("jdbc:sqlite:./db/akillnator.db");
@@ -23,11 +25,15 @@ public class Dbmanager {
 			e.printStackTrace();
 		}
 	}
-	public void disconnect(){
+	public void Disconnect(){
 		try {
 			c.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void InsertPatient(Patient c ){
+		
 	}
 }
