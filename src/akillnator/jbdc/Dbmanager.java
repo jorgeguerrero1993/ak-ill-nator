@@ -3,6 +3,7 @@ package akillnator.jbdc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 import akillnator.pojo.Patient;
@@ -34,8 +35,22 @@ public class Dbmanager {
 		}
 	}
 	
-	public void InsertPatient(Patient c ){
+	public void InsertPatient(Patient Abe ){
 		
+		Statement stmt;
+		try {
+			stmt = c.createStatement();
+		
+		String sql = "INSERT INTO departments (name, address) "
+				+ "VALUES ('" + Abe.getName() + "', '" + Abe.getName()	+ "');";
+		stmt.executeUpdate(sql); // ' ' ARE NECCESARY FOR CQL
+		stmt.close();
+		
+	}
+		 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	public ArrayList <Patient> GetAllPatients(){
