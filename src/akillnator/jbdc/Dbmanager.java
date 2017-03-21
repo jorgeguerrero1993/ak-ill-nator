@@ -3,6 +3,7 @@ package akillnator.jbdc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.*;
 
 import akillnator.pojo.Patient;
 
@@ -14,7 +15,7 @@ public class Dbmanager {
 	public Dbmanager(Connection c){
 		
 	}
-	//Diego hy
+
 	public void Connect(){
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -36,4 +37,13 @@ public class Dbmanager {
 	public void InsertPatient(Patient c ){
 		
 	}
+	
+	public ArrayList <Patient> GetAllPatients(){
+	
+	}
+	
+	public void CreateTable(){
+		
+	}
+	
 }
