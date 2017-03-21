@@ -14,7 +14,7 @@ public class Dbmanager {
 	public Dbmanager(Connection c){
 		
 	}
-	//Diego
+	//Diego hy
 	public void Connect(){
 		try {
 			Class.forName("org.sqlite.JDBC");
