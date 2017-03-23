@@ -2,6 +2,7 @@ package akillnator.jbdc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
@@ -62,4 +63,9 @@ public class Dbmanager {
 		
 	}
 	
+	public void deletePatient(Patient Abe)throws SQLException{
+		String sql = "DELETE * FROM patient "+Abe;
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.executeUpdate();
+	}
 }
