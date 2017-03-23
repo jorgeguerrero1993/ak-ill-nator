@@ -14,7 +14,8 @@ public class Dbmanager {
 	private Connection c;
 	
 	public Dbmanager(Connection c){
-		
+	
+		Connect();
 	}
 
 	public void Connect(){
@@ -34,16 +35,16 @@ public class Dbmanager {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void InsertPatient(Patient Abe ){
 		
 		Statement stmt;
 		try {
 			stmt = c.createStatement();
 		
-		String sql = "INSERT INTO departments (name, address) "
+		String sql = "INSERT INTO Patient (name, address) "
 				+ "VALUES ('" + Abe.getName() + "', '" + Abe.getName()	+ "');";
-		stmt.executeUpdate(sql); // ' ' ARE NECCESARY FOR CQL
+		stmt.executeUpdate(sql); 
 		stmt.close();
 		
 	}
