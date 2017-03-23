@@ -4,7 +4,13 @@ package akillnator.jbdc;
 import java.util.*;
 import java.sql.*;
 
+import akillnator.pojo.Analysis;
+import akillnator.pojo.Drugs;
+import akillnator.pojo.Illness;
 import akillnator.pojo.Patient;
+import akillnator.pojo.PreviousEvents;
+import akillnator.pojo.Symptons;
+import akillnator.pojo.Treatment;
 
 public class Dbmanager {
 	
@@ -86,7 +92,37 @@ public class Dbmanager {
 	}
 	
 	public void deletePatient(Patient Abe)throws SQLException{
-		String sql = "DELETE * FROM patient "+Abe;
+		String sql = "DELETE "+Abe+" FROM patient ";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.executeUpdate();
+	}
+	public void deleteAnalysis(Analysis analysis)throws SQLException{
+		String sql = "DELETE "+analysis+" FROM analysis ";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.executeUpdate();
+	}
+	public void deleteDrugs(Drugs drugs)throws SQLException{
+		String sql = "DELETE "+drugs+" FROM drugs ";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.executeUpdate();
+	}
+	public void deleteIllness(Illness ill)throws SQLException{
+		String sql = "DELETE "+ill+" FROM patient ";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.executeUpdate();
+	}
+	public void deletePreviousEvents(PreviousEvents prvev)throws SQLException{
+		String sql = "DELETE "+prvev+" FROM patient ";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.executeUpdate();
+	}
+	public void deleteSymptons(Symptons symp)throws SQLException{
+		String sql = "DELETE "+symp+" FROM patient ";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.executeUpdate();
+	}
+	public void deleteTreatment(Treatment treatment)throws SQLException{
+		String sql = "DELETE "+treatment+" FROM patient ";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.executeUpdate();
 	}
