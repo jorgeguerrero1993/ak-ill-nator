@@ -1,5 +1,5 @@
-
 package akillnator.jbdc;
+
 
 import java.util.*;
 import java.io.BufferedReader;
@@ -98,4 +98,9 @@ public class Dbmanager {
 		}
 	}
 	
+	public void deletePatient(Patient Abe)throws SQLException{
+		String sql = "DELETE * FROM patient "+Abe;
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.executeUpdate();
+	}
 }
