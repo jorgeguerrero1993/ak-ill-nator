@@ -13,10 +13,10 @@ public class Dbmanager {
 	
 	public Dbmanager(Connection c){
 	
-		Connect();
+		connect();
 	}
 
-	public void Connect(){
+	public void connect(){
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c=DriverManager.getConnection("jdbc:sqlite:./db/akillnator.db");
@@ -26,7 +26,7 @@ public class Dbmanager {
 			e.printStackTrace();
 		}
 	}
-	public void Disconnect(){
+	public void disconnect(){
 		try {
 			c.close();
 		} catch (Exception e) {
@@ -34,14 +34,15 @@ public class Dbmanager {
 		}
 	}
 
-	public void InsertPatient(Patient Abe ){
+	public void insertPatient(Patient Abe ){
 		
-		Statement stmt;
 		try {
-			stmt = c.createStatement();
+			String sql = "INSERT INTO Patient (name, address) "
+					+ "VALUES ('" + Abe.getName() + "', '" + Abe.getName()	+ "');";
+			
+			Statement stmt = c.createStatement();
 		
-		String sql = "INSERT INTO Patient (name, address) "
-				+ "VALUES ('" + Abe.getName() + "', '" + Abe.getName()	+ "');";
+		
 		stmt.executeUpdate(sql); 
 		stmt.close();
 		
@@ -74,7 +75,7 @@ public class Dbmanager {
 		}
 		return returnedList;
 	}
-	
+			
 	public void createTable(){
 		try{
 			Statement stmt = c.createStatement();
@@ -118,4 +119,9 @@ public class Dbmanager {
 		}
 	}
 	
+	public void deletePatient(Patient Abe)throws SQLException{
+		String sql = "DELETE * FROM patient "+Abe;
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.executeUpdate();
+	}
 }
