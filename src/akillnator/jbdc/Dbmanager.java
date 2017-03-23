@@ -2,6 +2,8 @@
 package akillnator.jbdc;
 
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.sql.*;
 
 import akillnator.pojo.Patient;
@@ -33,7 +35,18 @@ public class Dbmanager {
 			e.printStackTrace();
 		}
 	}
-
+    public void getInfo(){
+    	try{
+    	System.out.println("Please, input the department info:");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Name: ");
+		String name = reader.readLine();
+		System.out.print("Address: ");
+		String address = reader.readLine();
+    }
+    	catch{
+    		
+    	}
 	public void insertPatient(Patient Abe ){
 		
 		try {
