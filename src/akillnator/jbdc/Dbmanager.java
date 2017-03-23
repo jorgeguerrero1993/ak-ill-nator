@@ -1,11 +1,8 @@
 package akillnator.jbdc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.*;
+import java.sql.*;
 
 import akillnator.pojo.Patient;
 
@@ -16,10 +13,10 @@ public class Dbmanager {
 	
 	public Dbmanager(Connection c){
 	
-		Connect();
+		connect();
 	}
 
-	public void Connect(){
+	public void connect(){
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c=DriverManager.getConnection("jdbc:sqlite:./db/akillnator.db");
@@ -29,7 +26,7 @@ public class Dbmanager {
 			e.printStackTrace();
 		}
 	}
-	public void Disconnect(){
+	public void disconnect(){
 		try {
 			c.close();
 		} catch (Exception e) {
@@ -37,14 +34,15 @@ public class Dbmanager {
 		}
 	}
 
-	public void InsertPatient(Patient Abe ){
+	public void insertPatient(Patient Abe ){
 		
-		Statement stmt;
 		try {
-			stmt = c.createStatement();
+			String sql = "INSERT INTO Patient (name, address) "
+					+ "VALUES ('" + Abe.getName() + "', '" + Abe.getName()	+ "');";
+			
+			Statement stmt = c.createStatement();
 		
-		String sql = "INSERT INTO Patient (name, address) "
-				+ "VALUES ('" + Abe.getName() + "', '" + Abe.getName()	+ "');";
+		
 		stmt.executeUpdate(sql); 
 		stmt.close();
 		
@@ -55,12 +53,36 @@ public class Dbmanager {
 			}
 	}
 	
-	public ArrayList <Patient> GetAllPatients(){
-	
-	}
-	
-	public void CreateTable(){
+	public List <Patient> getAllPatients(){
+		Statement stmt;
+		List <Patient> returnedList = new ArrayList<>(); 
+		try {
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Patient");
+			while(rs.next() == true){
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				String gender = rs.getString("gender");
+				float weight  = rs.getFloat("weight");
+				returnedList.add(new Patient(id,name,age,gender,weight));
+				stmt.close();
+			}
+		} 
 		
+		catch (SQLException e){
+			e.printStackTrace();
+		}
+		return returnedList;
+	}
+			
+	public void createTable(){
+		try{
+			Statement stmt = c.createStatement();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void deletePatient(Patient Abe)throws SQLException{
