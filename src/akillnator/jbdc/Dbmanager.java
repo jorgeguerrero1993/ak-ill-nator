@@ -85,6 +85,40 @@ public class Dbmanager {
 	public void createTable(){
 		try{
 			Statement stmt = c.createStatement();
+			//Patient table
+			stmt.executeUpdate("CREATE TABLE Patient(" + 
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"name TEXT,"+
+			"age INTEGER,"+
+			"gender TEXT,"+
+			"weight FLOAT)");
+			//Symptons table
+			stmt.executeUpdate("CREATE TABLE Symptons("+
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"name TEXT,"+
+			"type TEXT)");
+			//Previous events table
+			stmt.executeUpdate("CREATE TABLE PreviousEvents("+
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"environment TEXT,"+
+			"accident TEXT);");
+			//Drugs table
+			stmt.executeUpdate("CREATE TABLE Drugs("+
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"name TEXT,"+
+			"warnings TEXT)");
+			//Illness table
+			//Treatment table
+			//Analysis table
+			//Patient-Previous events table
+			//Patient-symptons table
+			//Patient-drugs table
+			//Previous events - symptons table
+			//Symptons - Illness table
+			//Drugs - Treatment table
+			//Patient - Ilness table
+			
+					
 		}
 		catch(SQLException e){
 			e.printStackTrace();
