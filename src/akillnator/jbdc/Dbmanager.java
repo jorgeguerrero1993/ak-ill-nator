@@ -20,7 +20,6 @@ public class Dbmanager {
 	private Connection c;
 	
 	public Dbmanager(){
-	
 		connect();
 	}
 
@@ -180,21 +179,8 @@ public class Dbmanager {
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.executeUpdate();
 	}
+}
 
-public static void main(String[] args) {
-	Dbmanager a= new Dbmanager();
- 	System.out.println(" MENU :"
- 			+ "\n\n 1. ADD A PATIENT");
- try{
-	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	Integer answer = Integer.parseInt(reader.readLine());
-	if(answer==1){
-		a.getInfo(a);
-	}
- }
- catch(Exception e) {
-		e.printStackTrace();
-	}
 
-}}
+
 
