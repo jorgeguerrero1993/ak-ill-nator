@@ -85,7 +85,7 @@ public class Dbmanager {
 				int age = rs.getInt("age");
 				String gender = rs.getString("gender");
 				float weight  = rs.getFloat("weight");
-				returnedList.add(new Patient(id,name,age,gender,weight));
+				returnedList.add(new Patient(name,age,gender,weight));
 				stmt.close();
 			}
 		} 
