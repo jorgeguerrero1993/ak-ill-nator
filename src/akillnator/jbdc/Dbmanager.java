@@ -111,12 +111,12 @@ public class Dbmanager {
 			//Symptons - Illness table
 			//Drugs - Treatment table
 			//Patient - Ilness table
-			
-					
+			stmt.close();					
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public void deletePatient(Patient Abe)throws SQLException{
