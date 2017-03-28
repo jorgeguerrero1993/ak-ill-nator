@@ -17,12 +17,18 @@ public class Patient implements Serializable{
 		super();
 	}
 	
-	public Patient(Integer id, String name, Integer age, String gender, float weight){
-		this.id=id;
+	public Patient(String name, Integer age, String gender, float weight){
+	
 		this.name=name;
 		this.age=age;
 		this.gender=gender;
 		this.weight=weight;
+	}
+	public Patient(String name, Integer age){
+		
+		this.name=name;
+		this.age=age;
+		
 	}
 
 	public int getId() {
