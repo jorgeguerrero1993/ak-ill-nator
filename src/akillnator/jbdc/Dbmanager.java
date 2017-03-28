@@ -147,7 +147,7 @@ public class Dbmanager {
 
 public static void main(String[] args) {
 	Dbmanager a= new Dbmanager();
- 	System.out.println("MENU :"
+ 	System.out.println(" MENU :"
  			+ "\n\n 1. ADD A PATIENT");
  try{
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
