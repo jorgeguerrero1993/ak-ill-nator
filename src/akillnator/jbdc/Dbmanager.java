@@ -1,10 +1,14 @@
 package akillnator.jbdc;
 
 
-import java.util.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import akillnator.pojo.Analysis;
 import akillnator.pojo.Drugs;
@@ -68,12 +72,12 @@ public class Dbmanager {
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Patient");
 			while(rs.next() == true){
-				int id = rs.getInt("id");
+//   			int id = rs.getInt("id");
 				String name = rs.getString("name");
 				int age = rs.getInt("age");
-				String gender = rs.getString("gender");
-				float weight  = rs.getFloat("weight");
-				returnedList.add(new Patient(name,age,gender,weight));
+//				String gender = rs.getString("gender");
+//				float weight  = rs.getFloat("weight");
+				returnedList.add(new Patient(name,age/*,gender,weight*/));
 				stmt.close();
 			}
 		} 

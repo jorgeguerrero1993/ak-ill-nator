@@ -3,6 +3,7 @@ import akillnator.jbdc.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import akillnator.jbdc.Dbmanager;
 import akillnator.pojo.Patient;
@@ -13,7 +14,7 @@ public class Main {
 		Integer answer=50;
 	 	while(answer!=0){
 			System.out.println(" MENU :"
-		 			+ "\n0.Exit \n 1. ADD A PATIENT \n 2.Create tables");
+		 			+ "\n0.Exit \n 1. ADD A PATIENT \n 2.Create tables \n");
 			 try{
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				answer = Integer.parseInt(reader.readLine());
@@ -35,6 +36,12 @@ public class Main {
 				}
 				if(answer==3){
 					a.disconnect();
+				}
+				if(answer==4){
+					List <Patient> listpat = a.getAllPatients();
+					for (Patient patient : listpat) {
+						System.out.println(patient);
+					}
 				}
 			 }
 			 catch(Exception e) {
