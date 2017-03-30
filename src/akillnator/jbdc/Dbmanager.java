@@ -34,25 +34,8 @@ public class Dbmanager {
 			e.printStackTrace();
 		}
 	}
-    public void getInfo(Dbmanager a){
-    	
-    	Patient abe = new Patient(); 
-    	try{
-    	System.out.println("Please, input the Patient info:");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Name: ");
-		String name = reader.readLine();
-		System.out.print("Age: ");
-		Integer age = Integer.parseInt(reader.readLine());
-		abe.setAge(age);
-		abe.setName(name);
-		a.insertPatient(abe);
-		
-    } catch (Exception e) {
-		e.printStackTrace();
-	}
+  
    
-    }
 	public void insertPatient(Patient Abe ){
 		
 		try {
