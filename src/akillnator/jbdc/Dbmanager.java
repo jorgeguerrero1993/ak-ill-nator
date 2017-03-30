@@ -45,8 +45,8 @@ public class Dbmanager {
 	public void insertPatient(Patient Abe ){
 		
 		try {
-			String sql = "INSERT INTO Patient (name, address) "
-					+ "VALUES ('" + Abe.getName() + "', '" + Abe.getName()	+ "');";
+			String sql = "INSERT INTO Patient (name, age) "
+					+ "VALUES ('" + Abe.getName() + "', " + Abe.getAge()	+ ")";
 			
 			Statement stmt = c.createStatement();
 		
