@@ -20,7 +20,7 @@ public class Main {
 				if(answer==1){
 					
 					Patient abe = new Patient(); 
-			    	try{
+			    	
 			    	System.out.println("Please, input the Patient info:");
 					System.out.print("Name: ");
 					String name = reader.readLine();
