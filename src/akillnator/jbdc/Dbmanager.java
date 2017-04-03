@@ -65,15 +65,15 @@ public class Dbmanager {
 		try {
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Patient");
-			while(rs.next() == true){
+			while(rs.next()){
 //   			int id = rs.getInt("id");
 				String name = rs.getString("name");
 				int age = rs.getInt("age");
 //				String gender = rs.getString("gender");
 //				float weight  = rs.getFloat("weight");
 				returnedList.add(new Patient(name,age/*,gender,weight*/));
-				stmt.close();
 			}
+			stmt.close();
 		} 
 		
 		catch (SQLException e){
