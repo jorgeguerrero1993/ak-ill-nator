@@ -14,7 +14,6 @@ import akillnator.pojo.Patient;
 
 public class Dbmanager {
 	
-	
 	private Connection c;
 	
 	public Dbmanager(){
@@ -124,11 +123,34 @@ public class Dbmanager {
 		}
 		
 	}
-	
-	public void deletePatient(Patient Abe)throws SQLException{
-		String sql = "DELETE * FROM patient "+Abe;
+	//Poner en un futuro mas tipos de delete
+	public void deletePatient(int id)throws SQLException{
+		String sql = "DELETE * FROM patient WHERE id = "+id;
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.executeUpdate();
+		prep.close();
+	}
+	
+	public int searchIdByName(String name){
+		int id;
+		int count=0;
+		Dbmanager a = new Dbmanager();
+		List <Patient> patients = a.getAllPatients();
+		for (Patient patient : patients) {
+			if(name.equals(patient.getName())){
+				count++;
+			}
+		}
+		if(count==1){
+			for (Patient patient : patients) {
+				if(name.equals(patient.getName())){
+					return patient.getId();
+				}
+			}
+		}
+		else{
+			
+		}
 	}
 }
 
