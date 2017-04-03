@@ -14,12 +14,8 @@ import akillnator.pojo.Analysis;
 import akillnator.pojo.Drugs;
 import akillnator.pojo.Illness;
 import akillnator.pojo.Patient;
-import akillnator.pojo.PreviousEvents;
-import akillnator.pojo.Symptons;
-import akillnator.pojo.Treatment;
 
 public class Dbmanager {
-	
 	
 	private Connection c;
 	
@@ -71,15 +67,15 @@ public class Dbmanager {
 		try {
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Patient");
-			while(rs.next() == true){
+			while(rs.next()){
 //   			int id = rs.getInt("id");
 				String name = rs.getString("name");
 				int age = rs.getInt("age");
 //				String gender = rs.getString("gender");
 //				float weight  = rs.getFloat("weight");
 				returnedList.add(new Patient(name,age/*,gender,weight*/));
-				stmt.close();
 			}
+			stmt.close();
 		} 
 		
 		catch (SQLException e){
@@ -130,41 +126,34 @@ public class Dbmanager {
 		}
 		
 	}
+	//Poner en un futuro mas tipos de delete
+	public void deletePatient(int id)throws SQLException{
+		String sql = "DELETE * FROM patient WHERE id = "+id;
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.executeUpdate();
+		prep.close();
+	}
 	
-	public void deletePatient(Patient Abe)throws SQLException{
-		String sql = "DELETE "+Abe+" FROM patient ";
-		PreparedStatement prep = c.prepareStatement(sql);
-		prep.executeUpdate();
-	}
-	public void deleteAnalysis(Analysis analysis)throws SQLException{
-		String sql = "DELETE "+analysis+" FROM analysis ";
-		PreparedStatement prep = c.prepareStatement(sql);
-		prep.executeUpdate();
-	}
-	public void deleteDrugs(Drugs drugs)throws SQLException{
-		String sql = "DELETE "+drugs+" FROM drugs ";
-		PreparedStatement prep = c.prepareStatement(sql);
-		prep.executeUpdate();
-	}
-	public void deleteIllness(Illness ill)throws SQLException{
-		String sql = "DELETE "+ill+" FROM patient ";
-		PreparedStatement prep = c.prepareStatement(sql);
-		prep.executeUpdate();
-	}
-	public void deletePreviousEvents(PreviousEvents prvev)throws SQLException{
-		String sql = "DELETE "+prvev+" FROM patient ";
-		PreparedStatement prep = c.prepareStatement(sql);
-		prep.executeUpdate();
-	}
-	public void deleteSymptons(Symptons symp)throws SQLException{
-		String sql = "DELETE "+symp+" FROM patient ";
-		PreparedStatement prep = c.prepareStatement(sql);
-		prep.executeUpdate();
-	}
-	public void deleteTreatment(Treatment treatment)throws SQLException{
-		String sql = "DELETE "+treatment+" FROM patient ";
-		PreparedStatement prep = c.prepareStatement(sql);
-		prep.executeUpdate();
+	public int searchIdByName(String name){
+		int id;
+		int count=0;
+		Dbmanager a = new Dbmanager();
+		List <Patient> patients = a.getAllPatients();
+		for (Patient patient : patients) {
+			if(name.equals(patient.getName())){
+				count++;
+			}
+		}
+		if(count==1){
+			for (Patient patient : patients) {
+				if(name.equals(patient.getName())){
+					return patient.getId();
+				}
+			}
+		}
+		else{
+			
+		}
 	}
 }
 

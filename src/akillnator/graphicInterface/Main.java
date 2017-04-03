@@ -9,12 +9,13 @@ import akillnator.jbdc.Dbmanager;
 import akillnator.pojo.Patient;
 
 public class Main {
+	
 	public static void main(String[] args) {
 		Dbmanager a= new Dbmanager();
 		Integer answer=50;
 	 	while(answer!=0){
 			System.out.println(" MENU :"
-		 			+ "\n0.Exit \n 1. ADD A PATIENT \n 2.Create tables \n");
+		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete");
 			 try{
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				answer = Integer.parseInt(reader.readLine());
@@ -35,20 +36,27 @@ public class Main {
 					a.createTable();
 				}
 				if(answer==3){
-					a.disconnect();
-				}
-				if(answer==4){
+
 					List <Patient> listpat = a.getAllPatients();
 					for (Patient patient : listpat) {
 						System.out.println(patient);
 					}
+				
 				}
+				if(answer==4){
+					System.out.println("Write the name of the patient that you\n want to delete :");
+					String name = reader.readLine();	
+					int id= a.searchIdByName(name);
+					//Poner que si id = -1
+				}
+
 			 }
 			 catch(Exception e) {
 					e.printStackTrace();
 				}
 
 		}
+	 	a.disconnect();
 	 	}
 
 }
