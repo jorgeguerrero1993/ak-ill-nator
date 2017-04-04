@@ -24,8 +24,8 @@ public class Patient implements Serializable{
 		this.gender=gender;
 		this.weight=weight;
 	}
-	public Patient(String name, Integer age){
-		
+	public Patient(int id, String name, Integer age){
+		this.id=id;
 		this.name=name;
 		this.age=age;
 		

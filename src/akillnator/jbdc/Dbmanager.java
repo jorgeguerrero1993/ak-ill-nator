@@ -68,12 +68,12 @@ public class Dbmanager {
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Patient");
 			while(rs.next()){
-//   			int id = rs.getInt("id");
+    			int id = rs.getInt("id");
 				String name = rs.getString("name");
 				int age = rs.getInt("age");
 //				String gender = rs.getString("gender");
 //				float weight  = rs.getFloat("weight");
-				returnedList.add(new Patient(name,age/*,gender,weight*/));
+				returnedList.add(new Patient(id,name,age/*,gender,weight*/));
 			}
 			stmt.close();
 		} 
@@ -128,33 +128,40 @@ public class Dbmanager {
 	}
 	//Poner en un futuro mas tipos de delete
 	public void deletePatient(int id)throws SQLException{
-		String sql = "DELETE * FROM patient WHERE id = "+id;
+		String sql = "DELETE FROM patient WHERE id = ?";
 		PreparedStatement prep = c.prepareStatement(sql);
+		prep.setInt(1,id);
 		prep.executeUpdate();
 		prep.close();
+		System.out.println("It has been succesfully deleted");
 	}
 	
-	public int searchIdByName(String name){
-		int id;
-		int count=0;
-		Dbmanager a = new Dbmanager();
-		List <Patient> patients = a.getAllPatients();
-		for (Patient patient : patients) {
-			if(name.equals(patient.getName())){
-				count++;
-			}
-		}
-		if(count==1){
-			for (Patient patient : patients) {
-				if(name.equals(patient.getName())){
-					return patient.getId();
-				}
-			}
-		}
-		else{
-			
-		}
+	public void updatePatient ( Patient abe ){
+		//compare info to know if it is " " then remain old info
 	}
+	
+	public List<Patient> searchByName(String nameToSearch){
+		Statement stmt;
+		List <Patient> returnedList = new ArrayList<>(); 
+		try {
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Patient WHERE name = '" +nameToSearch+"'");
+			while(rs.next()){
+     			int id = rs.getInt("id");
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+//				String gender = rs.getString("gender");
+//				float weight  = rs.getFloat("weight");
+				returnedList.add(new Patient(id,name,age/*,gender,weight*/));
+			}
+			stmt.close();
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+		}
+		return returnedList;
+	}
+
 }
 
 

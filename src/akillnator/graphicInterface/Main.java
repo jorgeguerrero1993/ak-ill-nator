@@ -3,7 +3,8 @@ import akillnator.jbdc.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.*;
 
 import akillnator.jbdc.Dbmanager;
 import akillnator.pojo.Patient;
@@ -45,9 +46,36 @@ public class Main {
 				}
 				if(answer==4){
 					System.out.println("Write the name of the patient that you\n want to delete :");
-					String name = reader.readLine();	
-					int id= a.searchIdByName(name);
-					//Poner que si id = -1
+					String name = reader.readLine();
+					List <Patient> patientListByName = a.searchByName(name);
+					for (Patient patient : patientListByName) {
+						System.out.println(patient+" \n");
+					}
+					System.out.println(" Which one would you like to delete? \n ID :____");
+					Integer id = Integer.parseInt(reader.readLine());
+					a.deletePatient(id);
+					
+				}
+				if(answer==5){
+					System.out.println("Write the name of the patient that you\n want to update :");
+					String name = reader.readLine();
+					List <Patient> patientListByName = a.searchByName(name);
+					for (Patient patient : patientListByName) {
+						System.out.println(patient+" \n");
+					}
+					System.out.println(" Which one would you like to update? \n ID :____");
+					Integer id = Integer.parseInt(reader.readLine());
+					
+					Patient updateInfo = new Patient();
+					System.out.println("Put the new information , ( If you don't want to update some information press ENTER");
+					System.out.println("Nombre :");
+					updateInfo.setName(reader.readLine());
+					System.out.println("Age :");
+					updateInfo.setAge(Integer.parseInt(reader.readLine()));
+					
+					
+					
+					
 				}
 
 			 }
