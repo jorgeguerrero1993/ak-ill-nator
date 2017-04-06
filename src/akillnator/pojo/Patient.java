@@ -1,6 +1,7 @@
 package akillnator.pojo;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Patient implements Serializable{
 
@@ -8,7 +9,7 @@ public class Patient implements Serializable{
 	
 	private  Integer id;
 	private String name;
-	private Integer age;
+	private Date birthDate;
 	private String gender;
 	private float weight;
 	
@@ -17,17 +18,17 @@ public class Patient implements Serializable{
 		super();
 	}
 	
-	public Patient(String name, Integer age, String gender, float weight){
+	public Patient(String name, Date birthDate, String gender, float weight){
 	
 		this.name=name;
-		this.age=age;
+		this.birthDate=birthDate;
 		this.gender=gender;
 		this.weight=weight;
 	}
-	public Patient(int id, String name, Integer age){
+	public Patient(int id, String name, Date birthDate){
 		this.id=id;
 		this.name=name;
-		this.age=age;
+		this.birthDate=birthDate;
 		
 	}
 
@@ -50,16 +51,13 @@ public class Patient implements Serializable{
 		this.name = name;
 	}
 
-
-	public int getAge() {
-		return age;
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
-
-	public void setAge(int age) {
-		this.age = age;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
-
 
 	public String getGender() {
 		return gender;
@@ -109,7 +107,7 @@ public class Patient implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Patient [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", weight=" + weight
+		return "Patient [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", gender=" + gender + ", weight=" + weight
 				+ "]";
 	}
 	
