@@ -2,6 +2,7 @@ package akillnator.jbdc;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,16 +46,19 @@ public class Dbmanager {
 	public void insertPatient(Patient Abe ){
 		
 		try {
-			String sql = "INSERT INTO Patient (name, age) "
-					+ "VALUES ('" + Abe.getName() + "', " + Abe.getAge()	+ ")";
+			String sql = "INSERT INTO Patient (name, birthDate,gender,weight) "
+					+ "VALUES (?,?,?,?)";
 			
-			Statement stmt = c.createStatement();
+			PreparedStatement stmt=c.prepareStatement(sql);
+			stmt.setString(1, Abe.getName());
+			stmt.setDate(2, Abe.getBirthDate());;
+			stmt.setString(3, Abe.getGender());
+			stmt.setFloat(4, Abe.getWeight());
+			
+			stmt.executeUpdate(sql); 
+			stmt.close();
 		
-		
-		stmt.executeUpdate(sql); 
-		stmt.close();
-		
-	}
+		}
 		 catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -70,10 +74,10 @@ public class Dbmanager {
 			while(rs.next()){
     			int id = rs.getInt("id");
 				String name = rs.getString("name");
-				int age = rs.getInt("age");
+				Date birthDate=rs.getDate("birthDate");
 //				String gender = rs.getString("gender");
 //				float weight  = rs.getFloat("weight");
-				returnedList.add(new Patient(id,name,age/*,gender,weight*/));
+				returnedList.add(new Patient(id,name,birthDate/*,gender,weight*/));
 			}
 			stmt.close();
 		} 
@@ -91,7 +95,7 @@ public class Dbmanager {
 			stmt.executeUpdate("CREATE TABLE Patient(" + 
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
-			"age INTEGER,"+
+			"birthDate DATE,"+
 			"gender TEXT,"+
 			"weight FLOAT)");
 			//Symptons table
@@ -151,10 +155,10 @@ public class Dbmanager {
 			while(rs.next()){
      			int id = rs.getInt("id");
 				String name = rs.getString("name");
-				int age = rs.getInt("age");
+				Date birthDate=rs.getDate("birthDate");
 //				String gender = rs.getString("gender");
 //				float weight  = rs.getFloat("weight");
-				returnedList.add(new Patient(id,name,age/*,gender,weight*/));
+				returnedList.add(new Patient(id,name,birthDate/*,gender,weight*/));
 			}
 			stmt.close();
 		}
