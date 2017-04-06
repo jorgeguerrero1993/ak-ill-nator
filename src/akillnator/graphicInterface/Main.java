@@ -73,18 +73,21 @@ public class Main {
 						}
 					}
 					
-					Patient updateInfo = new Patient();
+					Patient newPat = new Patient();
 					System.out.println("Put the new information , ( If you don't want to update some information press ENTER");
 					System.out.println("Nombre :");
-					updateInfo.setName(reader.readLine());
+					newPat.setName(reader.readLine());
 					System.out.println("Age :");
 					String ageString=reader.readLine();
-					if (ageString != ""){
-						//Meter cosas del nuevo en el viejo, si no no se hace nada. Luego se lo pasas al db y hace el swl para actualizar
+					if (newPat.getName() != ""){
+						oldPat.setName(newPat.getName());
+					}
+					if(ageString !=""){
+						//Esperar a jorge
 					}
 					// else age = ageString
-					updateInfo.setAge(Integer.parseInt());
-					a.updatePatient(updateInfo);
+					newPat.setAge(Integer.parseInt());
+					a.updatePatient(newPat);
 					
 				}
 
