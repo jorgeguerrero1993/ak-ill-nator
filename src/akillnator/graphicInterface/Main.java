@@ -32,9 +32,10 @@ public class Main {
 					String name = reader.readLine();
 					System.out.println("Give me the birthdate: YYYY-MM-DD");
 					String birthdate=reader.readLine();
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 					LocalDate birthDate= LocalDate.parse(birthdate, formatter);
 					abe.setBirthDate(Date.valueOf(birthDate));
+					
 					abe.setName(name);
 					a.insertPatient(abe);
 				}
@@ -78,7 +79,7 @@ public class Main {
 						}
 					}
 					
-					Patient updateInfo = new Patient();
+					Patient newPat = new Patient();
 					System.out.println("Put the new information , ( If you don't want to update some information press ENTER");
 					System.out.println("Name: ");
 					name=reader.readLine();
@@ -87,12 +88,15 @@ public class Main {
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 					LocalDate birthDate= LocalDate.parse(birthdate, formatter);
 					
-					if (birthDate != ""){
-						//Meter cosas del nuevo en el viejo, si no no se hace nada. Luego se lo pasas al db y hace el swl para actualizar
+					if(newPat.getName()!=""){
+						oldPat.setName(newPat.getName());
 					}
-					// else age = ageString
-					updateInfo.setBirthDate(Date.valueOf(birthDate));
-					a.updatePatient(updateInfo);
+					
+					if (birthDate.equals("")==false){
+						oldPat.setBirthDate(newPat.getBirthDate());
+					}
+					
+					a.updatePatient(newPat);
 					
 				}
 

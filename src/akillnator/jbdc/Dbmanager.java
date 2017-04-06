@@ -46,14 +46,14 @@ public class Dbmanager {
 	public void insertPatient(Patient Abe ){
 		
 		try {
-			String sql = "INSERT INTO Patient (name, birthDate,gender,weight) "
-					+ "VALUES (?,?,?,?)";
+			String sql = "INSERT INTO Patient (name, birthDate/*,gender,weight*/) "
+					+ "VALUES (?,?/*,?,?*/)";
 			
 			PreparedStatement stmt=c.prepareStatement(sql);
 			stmt.setString(1, Abe.getName());
 			stmt.setDate(2, Abe.getBirthDate());;
-			stmt.setString(3, Abe.getGender());
-			stmt.setFloat(4, Abe.getWeight());
+			/*stmt.setString(3, Abe.getGender());
+			stmt.setFloat(4, Abe.getWeight());*/
 			
 			stmt.executeUpdate(sql); 
 			stmt.close();
@@ -140,10 +140,27 @@ public class Dbmanager {
 		System.out.println("It has been succesfully deleted");
 	}
 	
-	public void updatePatient ( Patient newPat){
-		//compare info to know if it is " " then remain old info
-
-	
+	public String updatePatient ( Patient newPat){
+		
+		try {
+			String sql = "UPDATE Patient SET name=? birthDate=? "
+					+ "WHERE id=?";
+			
+			PreparedStatement stmt=c.prepareStatement(sql);
+			stmt.setString(1, newPat.getName());
+			stmt.setDate(2, newPat.getBirthDate());;
+			stmt.setInt(3, newPat.getId());
+			
+			stmt.executeUpdate(sql); 
+			stmt.close();
+			return "Done";
+		
+		}
+		 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return "Error";
 	}
 	
 	public List<Patient> searchByName(String nameToSearch){
