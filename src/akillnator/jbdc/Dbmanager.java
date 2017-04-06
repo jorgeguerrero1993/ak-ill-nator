@@ -139,8 +139,10 @@ public class Dbmanager {
 		System.out.println("It has been succesfully deleted");
 	}
 	
-	public void updatePatient ( Patient abe ){
+	public void updatePatient ( Patient newPat){
 		//compare info to know if it is " " then remain old info
+
+	
 	}
 	
 	public List<Patient> searchByName(String nameToSearch){
