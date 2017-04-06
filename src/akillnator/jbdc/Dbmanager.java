@@ -45,16 +45,19 @@ public class Dbmanager {
 	public void insertPatient(Patient Abe ){
 		
 		try {
-			String sql = "INSERT INTO Patient (name, age) "
-					+ "VALUES ('" + Abe.getName() + "', " + Abe.getAge()	+ ")";
+			String sql = "INSERT INTO Patient (name, age,gender,weight) "
+					+ "VALUES (?,?,?,?)";
 			
-			Statement stmt = c.createStatement();
+			PreparedStatement stmt=c.prepareStatement(sql);
+			stmt.setString(1, Abe.getName());
+			stmt.setInt(2, Abe.getAge());
+			stmt.setString(3, Abe.getGender());
+			stmt.setFloat(4, Abe.getWeight());
+			
+			stmt.executeUpdate(sql); 
+			stmt.close();
 		
-		
-		stmt.executeUpdate(sql); 
-		stmt.close();
-		
-	}
+		}
 		 catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
