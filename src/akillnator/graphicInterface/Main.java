@@ -7,10 +7,11 @@ import akillnator.jbdc.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.*;
+import java.util.List;
 
 import akillnator.jbdc.Dbmanager;
 import akillnator.pojo.Patient;
@@ -37,7 +38,7 @@ public class Main {
 					String birthdate=reader.readLine();
 			        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
 					LocalDate parseDate= LocalDate.parse(birthdate, formatter);
-					abe.setBirthDate(parseDate);
+					abe.setBirthDate(Date.valueOf(parseDate));
 					
 					abe.setName(name);
 					a.insertPatient(abe);
