@@ -1,9 +1,12 @@
+//El problema está en que en la línea 38 le pasamos un localDate a un Date.
+//Deberíamos desterrar todos los métodos de date y pasar a usar siempre localDates??? 
+//Eso incluye cambiar la clase paciente por ejemplo
+
 package akillnator.graphicInterface;
 import akillnator.jbdc.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -32,9 +35,9 @@ public class Main {
 					String name = reader.readLine();
 					System.out.println("Give me the birthdate: YYYY-MM-DD");
 					String birthdate=reader.readLine();
-			        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-					LocalDate birthDate= LocalDate.parse(birthdate, formatter);
-					abe.setBirthDate(Date.valueOf(birthDate));
+			        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+					LocalDate parseDate= LocalDate.parse(birthdate, formatter);
+					abe.setBirthDate(parseDate);
 					
 					abe.setName(name);
 					a.insertPatient(abe);
