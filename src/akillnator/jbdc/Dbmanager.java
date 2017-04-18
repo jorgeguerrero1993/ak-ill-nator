@@ -107,15 +107,28 @@ public class Dbmanager {
 			stmt.executeUpdate("CREATE TABLE PreviousEvents("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"environment TEXT,"+
-			"accident TEXT);");
+			"accident TEXT)");
 			//Drugs table
 			stmt.executeUpdate("CREATE TABLE Drugs("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
 			"warnings TEXT)");
 			//Illness table
+			stmt.executeUpdate("CREATE TABLE Illness("+
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"name INTEGER,"+
+			"text TEXT,"+
+			"aprox_duration TEXT)");
 			//Treatment table
+			stmt.executeUpdate("CREATE TABLE Treatment("+
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"name TEXT,"+
+			"type TEXT)");
 			//Analysis table
+			stmt.executeUpdate("CREATE TABLE Analysis("+
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"name TEXT,"+
+			"FOREIGN KEY (illness_id) REFERENCES illness(id)");
 			//Patient-Previous events table
 			//Patient-symptons table
 			//Patient-drugs table
