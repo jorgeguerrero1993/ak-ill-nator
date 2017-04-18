@@ -34,7 +34,7 @@ public class Main {
 			    	System.out.println("Please, input the Patient info:");
 					System.out.print("Name: ");
 					String name = reader.readLine();
-					System.out.println("Give me the birthdate: YYYY-MM-DD");
+					System.out.println("Give me the birthdate: YYYY MM DD");
 					String birthdate=reader.readLine();
 			        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
 					LocalDate parseDate= LocalDate.parse(birthdate, formatter);
