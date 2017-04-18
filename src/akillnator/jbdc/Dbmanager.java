@@ -46,8 +46,8 @@ public class Dbmanager {
 	public void insertPatient(Patient Abe ){
 		
 		try {
-			String sql = "INSERT INTO Patient (name, birthDate/*,gender,weight*/) "
-					+ "VALUES (?,?/*,?,?*/)";
+			String sql = "INSERT INTO Patient (name, birthDate) "
+					+ "VALUES (?,?)"; //Faltan atributos Y AÑADIR ATRIBTOS NOT NULL
 			
 			PreparedStatement stmt=c.prepareStatement(sql);
 			stmt.setString(1, Abe.getName());
