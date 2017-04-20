@@ -13,13 +13,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import akillnator.jbdc.Dbmanager;
+import akillnator.jbdc.JDBCmanager;
 import akillnator.pojo.Patient;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		Dbmanager a= new Dbmanager();
+		JDBCmanager a= new JDBCmanager();
 		Integer answer=50;
 	 	while(answer!=0){
 			System.out.println(" MENU :"
