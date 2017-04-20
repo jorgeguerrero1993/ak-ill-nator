@@ -160,7 +160,11 @@ public class Dbmanager {
 			"quantity TEXT,"+
 			"Frequency TEXT,"+
 			"PRIMARY KEY (drugsId,treatId))");
-			//Patient - Ilness table
+			//Patient - Illness table
+			stmt.executeUpdate("CREATE TABLE PatientIllness("+
+			"patId INTEGER REFERENCES Patient(id),"+
+			"illnessId INTEGER REFERENCES Illness(id),"+
+			"PRIMARY KEY(patId,illnessId))");
 			stmt.close();					
 		}
 		catch(SQLException e){
