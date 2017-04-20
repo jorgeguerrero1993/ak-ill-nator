@@ -46,8 +46,8 @@ public class Dbmanager {
 	public void insertPatient(Patient Abe ){
 		
 		try {
-			String sql = "INSERT INTO Patient (name, birthDate/*,gender,weight*/) "
-					+ "VALUES (?,?/*,?,?*/)";
+			String sql = "INSERT INTO Patient (name, birthDate) "
+					+ "VALUES (?,?)"; //Faltan atributos Y AÑADIR ATRIBTOS NOT NULL
 			
 			PreparedStatement stmt=c.prepareStatement(sql);
 			stmt.setString(1, Abe.getName());
@@ -107,21 +107,59 @@ public class Dbmanager {
 			stmt.executeUpdate("CREATE TABLE PreviousEvents("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"environment TEXT,"+
-			"accident TEXT);");
+			"accident TEXT)");
 			//Drugs table
 			stmt.executeUpdate("CREATE TABLE Drugs("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
 			"warnings TEXT)");
 			//Illness table
+			stmt.executeUpdate("CREATE TABLE Illness("+
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"name INTEGER,"+
+			"text TEXT,"+
+			"aprox_duration TEXT )"+
+			"FOREIGN KEY (treatment_id) REFERENCES Treatment (id))");
 			//Treatment table
+			stmt.executeUpdate("CREATE TABLE Treatment("+
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"name TEXT,"+
+			"type TEXT)");
 			//Analysis table
+			stmt.executeUpdate("CREATE TABLE Analysis("+
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"name TEXT,"+
+			"FOREIGN KEY (illness_id) REFERENCES Illness(id)");
 			//Patient-Previous events table
+			stmt.executeUpdate("CREATE TABLE PatientPrevEvents("+
+			"patId INTEGER REFERENCES Patient(id),"+
+			"prevId INTEGER REFERENCES PreviousEvents(id),"+
+			"PRIMARY KEY(patId,prevId))");
 			//Patient-symptons table
+			stmt.executeUpdate("CREATE TABLE PatientSymptons("+
+			"patId INTEGER REFERENCES Patient(id),"+
+			"sympId INTEGER REFERENCES Symptons(id))");
 			//Patient-drugs table
+			stmt.executeUpdate("CREATE TABLE PatientDrugs("+
+			"patId INTEGER REFERENCES Patient(id),"+
+			"drugsId INTEGER REFERENCES Drugs(id))");
 			//Previous events - symptons table
+			stmt.executeUpdate("CREATE TABLE PrevEventsSymptons("+
+			"prevId INTEGER REFERENCES PreviousEvents(id),"+
+			"sympId INTEGER REFERENCES Symptons(id)"+
+			"PRIMARY KEY(prevId,sympId))");
 			//Symptons - Illness table
+			stmt.executeUpdate("CREATE TABLE SymptonsIllness("+
+			"sympId INTEGER REFERENCES Symptons(id),"+
+			"illnessId INTEGER REFERENCES Illness(id),"+
+			"PRIMARY KEY(sympId,illnessId))");
 			//Drugs - Treatment table
+			stmt.executeUpdate("CREATE TABLE DrugsTreatment("+
+			"drugsId INTEGER REFERENCES Drugs(id),"+
+			"treatId INTEGER REFERENCES Treatment(id),"+
+			"quantity TEXT,"+
+			"Frequency TEXT,"+
+			"PRIMARY KEY (drugsId,treatId))");
 			//Patient - Ilness table
 			stmt.close();					
 		}

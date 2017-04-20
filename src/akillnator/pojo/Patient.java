@@ -18,12 +18,12 @@ public class Patient implements Serializable{
 		super();
 	}
 	
-	public Patient(String name, Date birthDate, String gender, float weight){
+	public Patient(String name, Date birthDate/*, String gender, float weight*/){
 	
 		this.name=name;
 		this.birthDate=birthDate;
-		this.gender=gender;
-		this.weight=weight;
+		/*this.gender=gender;
+		this.weight=weight;*/
 	}
 	public Patient(int id, String name, Date birthDate){
 		this.id=id;
