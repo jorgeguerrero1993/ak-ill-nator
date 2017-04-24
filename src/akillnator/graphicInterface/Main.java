@@ -80,7 +80,7 @@ public class Main {
 					for (Patient patient : patientListByName) {
 						System.out.println(patient+" \n");
 					}
-					System.out.println(" Which one would you like to update? \n ID :____");
+					System.out.println(" Which one would you like to update? \n ID :");
 					Integer id = Integer.parseInt(reader.readLine());
 					Patient oldPat=new Patient();
 					for (Patient patient : patientListByName) {
