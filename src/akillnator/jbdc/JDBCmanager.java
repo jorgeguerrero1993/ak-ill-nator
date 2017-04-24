@@ -146,7 +146,7 @@ public class JDBCmanager implements Dbmanager{
 			//Previous events - symptons table
 			stmt.executeUpdate("CREATE TABLE PrevEventsSymptons("+
 			"prevId INTEGER REFERENCES PreviousEvents(id),"+
-			"sympId INTEGER REFERENCES Symptons(id)"+
+			"sympId INTEGER REFERENCES Symptons(id),"+
 			"PRIMARY KEY(prevId,sympId))");
 			//Symptons - Illness table
 			stmt.executeUpdate("CREATE TABLE SymptonsIllness("+
