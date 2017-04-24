@@ -32,13 +32,22 @@ public class Main {
 			    	System.out.println("Please, input the Patient info:");
 					System.out.print("Name: ");
 					String name = reader.readLine();
+					abe.setName(name);
+					
 					System.out.println("Give me the birthdate: YYYY MM DD");
 					String birthdate=reader.readLine();
 			        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
 					LocalDate parseDate= LocalDate.parse(birthdate, formatter);
 					abe.setBirthDate(Date.valueOf(parseDate));
 					
-					abe.setName(name);
+					System.out.print("Gender: Masc/Fem ");
+					String gender = reader.readLine();
+					abe.setGender(gender);
+					
+					System.out.print("Weight (kg): ");
+					float weight = Float.parseFloat(reader.readLine());
+					abe.setWeight(weight);
+				
 					a.insertPatient(abe);
 				}
 				if(answer==2){
