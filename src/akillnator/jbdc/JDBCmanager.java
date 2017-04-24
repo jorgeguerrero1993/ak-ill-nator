@@ -129,7 +129,7 @@ public class JDBCmanager implements Dbmanager{
 			stmt.executeUpdate("CREATE TABLE Analysis("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
-			"FOREIGN KEY (illness_id) REFERENCES Illness(id))");
+			"illness_id INTEGER REFERENCES Illness(id))");
 			//Patient-Previous events table
 			stmt.executeUpdate("CREATE TABLE PatientPrevEvents("+
 			"patId INTEGER REFERENCES Patient(id),"+
