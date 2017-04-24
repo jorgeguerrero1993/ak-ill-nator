@@ -47,7 +47,7 @@ public class Main {
 					System.out.print("Weight (kg): ");
 					float weight = Float.parseFloat(reader.readLine());
 					abe.setWeight(weight);
-				
+				//pa ver
 					a.insertPatient(abe);
 				}
 				if(answer==2){
