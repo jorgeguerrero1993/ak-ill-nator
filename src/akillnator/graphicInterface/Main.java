@@ -1,4 +1,4 @@
-//Aplicar interfaz
+//EN EL UPDATE poner el condicional de si no meten nada
 
 package akillnator.graphicInterface;
 import akillnator.jbdc.*;
@@ -96,14 +96,9 @@ public class Main {
 					name=reader.readLine();
 					System.out.println("Give me the birthdate: YYYY-MM-DD");
 					String birthdate=reader.readLine();
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-					LocalDate birthDate= LocalDate.parse(birthdate, formatter);
-					
-					if(newPat.getName()!=""){
-						oldPat.setName(newPat.getName());
-					}
-					
-					if (birthDate.equals("")==false){
+					if(birthdate.compareTo("")==0){
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						LocalDate birthDate= LocalDate.parse(birthdate, formatter);
 						oldPat.setBirthDate(newPat.getBirthDate());
 					}
 					
