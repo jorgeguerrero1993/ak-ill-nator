@@ -1,6 +1,4 @@
-//El problema está en que en la línea 38 le pasamos un localDate a un Date.
-//Deberíamos desterrar todos los métodos de date y pasar a usar siempre localDates??? 
-//Eso incluye cambiar la clase paciente por ejemplo
+//Aplicar interfaz
 
 package akillnator.graphicInterface;
 import akillnator.jbdc.*;
