@@ -158,7 +158,7 @@ public class JDBCmanager implements Dbmanager{
 			"drugsId INTEGER REFERENCES Drugs(id),"+
 			"treatId INTEGER REFERENCES Treatment(id),"+
 			"quantity TEXT,"+
-			"Frequency TEXT,"+
+			"frequency TEXT,"+
 			"PRIMARY KEY (drugsId,treatId))");
 			//Patient - Illness table
 			stmt.executeUpdate("CREATE TABLE PatientIllness("+
