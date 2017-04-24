@@ -68,7 +68,7 @@ public class Main {
 					for (Patient patient : patientListByName) {
 						System.out.println(patient+" \n");
 					}
-					System.out.println(" Which one would you like to delete? \n ID :____");
+					System.out.println(" Which one would you like to delete? \n ID :");
 					Integer id = Integer.parseInt(reader.readLine());
 					a.deletePatient(id);
 					

@@ -46,7 +46,7 @@ public class JDBCmanager implements Dbmanager{
 	public void insertPatient(Patient Abe ){
 		
 		try {
-			String sql = "INSERT INTO Patient (name, birthDate,gender,weight) "
+			String sql = "INSERT INTO Patient (name,birthDate,gender,weight) "
 					+ "VALUES (?,?,?,?)"; //Faltan atributos Y AÑADIR ATRIBTOS NOT NULL
 			
 			PreparedStatement stmt=c.prepareStatement(sql);
@@ -55,7 +55,7 @@ public class JDBCmanager implements Dbmanager{
 			stmt.setString(3, Abe.getGender());
 			stmt.setFloat(4, Abe.getWeight());
 			
-			stmt.executeUpdate(sql); 
+			stmt.executeUpdate(); 
 			stmt.close();
 		
 		}
@@ -77,7 +77,7 @@ public class JDBCmanager implements Dbmanager{
 				Date birthDate=rs.getDate("birthDate");
 				String gender = rs.getString("gender");
 				float weight  = rs.getFloat("weight");
-				returnedList.add(new Patient(name,birthDate,gender,weight));
+				returnedList.add(new Patient(id,name,birthDate,gender,weight));
 			}
 			stmt.close();
 		} 
