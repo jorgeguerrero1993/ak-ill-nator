@@ -118,7 +118,7 @@ public class JDBCmanager implements Dbmanager{
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name INTEGER,"+
 			"text TEXT,"+
-			"aprox_duration TEXT )"+
+			"aprox_duration TEXT "+
 			"FOREIGN KEY (treatment_id) REFERENCES Treatment (id))");
 			//Treatment table
 			stmt.executeUpdate("CREATE TABLE Treatment("+
