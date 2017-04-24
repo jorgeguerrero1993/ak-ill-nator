@@ -217,9 +217,9 @@ public class JDBCmanager implements Dbmanager{
      			int id = rs.getInt("id");
 				String name = rs.getString("name");
 				Date birthDate=rs.getDate("birthDate");
-//				String gender = rs.getString("gender");
-//				float weight  = rs.getFloat("weight");
-				returnedList.add(new Patient(id,name,birthDate/*,gender,weight*/));
+				String gender = rs.getString("gender");
+				float weight  = rs.getFloat("weight");
+				returnedList.add(new Patient(id,name,birthDate,gender,weight));
 			}
 			stmt.close();
 		}
