@@ -47,13 +47,13 @@ public class JDBCmanager implements Dbmanager{
 		
 		try {
 			String sql = "INSERT INTO Patient (name, birthDate) "
-					+ "VALUES (?,?)"; //Faltan atributos Y AÑADIR ATRIBTOS NOT NULL
+					+ "VALUES (?,?,?,?)"; //Faltan atributos Y AÑADIR ATRIBTOS NOT NULL
 			
 			PreparedStatement stmt=c.prepareStatement(sql);
 			stmt.setString(1, Abe.getName());
 			stmt.setDate(2, Abe.getBirthDate());;
-			/*stmt.setString(3, Abe.getGender());
-			stmt.setFloat(4, Abe.getWeight());*/
+			stmt.setString(3, Abe.getGender());
+			stmt.setFloat(4, Abe.getWeight());
 			
 			stmt.executeUpdate(sql); 
 			stmt.close();
