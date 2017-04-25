@@ -3,10 +3,22 @@ package akillnator.pojo;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+@Entity
+@Table(name="Patient")
 public class Patient implements Serializable{
 
 	private static final long serialVersionUID = -8841012208499645685L;
 	
+	@Id
+	@GeneratedValue(generator="Patient")
+	@TableGenerator(name="Patient",table="sqlite_sequence",
+			pkColumnName="name", valueColumnName="seq",pkColumnValue="Patient")
 	private  Integer id;
 	private String name;
 	private Date birthDate;

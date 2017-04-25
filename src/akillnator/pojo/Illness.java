@@ -2,17 +2,35 @@ package akillnator.pojo;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+@Entity
+@Table(name="Illness")
 public class Illness implements Serializable {
 	
 	private static final long serialVersionUID = -6017147906365330498L;
 	
-	//Atributes
+	@Id
+	@GeneratedValue(generator="Illness")
+	@TableGenerator(name="Illness", table="sqlite_sequence",
+					pkColumnName="name", valueColumnName="seq", pkColumnValue="Illness")
 	private Integer id;
 	private String name;
 	private String text;
 	private String aprox_duration;
-	private Treatment treatment_id; //% Es una fk, no meterlo en el toString
-	private List <Analysis> AnalysisList = new ArrayList<>(); //% Tampoco meter en el toString
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="treatment_id")
+	private Treatment treatment; //% Es una fk, no meterlo en el toString
+	@OneToMany(mappedBy="illness")
+	private List <Analysis> AnalysisList; //% Tampoco meter en el toString
 	
 	//Empty constructor
 	public Illness() {
@@ -52,12 +70,12 @@ public class Illness implements Serializable {
 		this.aprox_duration = aprox_duration;
 	}
 
-	public Treatment getTreatment_id() {
-		return treatment_id;
+	public Treatment getTreatment() {
+		return treatment;
 	}
 
-	public void setTreatment_id(Treatment treatment_id) {
-		this.treatment_id = treatment_id;
+	public void setTreatment(Treatment treatment) {
+		this.treatment = treatment;
 	}
 
 	public List<Analysis> getAnalysisList() {

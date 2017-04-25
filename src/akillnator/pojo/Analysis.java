@@ -1,24 +1,40 @@
 package akillnator.pojo;
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+@Entity
+@Table(name="Analysis")
 public class Analysis implements Serializable {
 
 	private static final long serialVersionUID = -2545657309934633583L;
 	
+	@Id
+	@GeneratedValue(generator="Analysis")
+	@TableGenerator(name="Analysis", table="sqlite_sequence",
+					pkColumnName="name", valueColumnName="seq", pkColumnValue="Analysis")
 	private Integer id;
 	private String name ;
-	private Integer illness_id;
-	public Illness FK= new Illness ();
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="illness_id")
+	private Illness illness;
 	
 	public Analysis() {
 		super();
 	}
 
-	public Analysis(Integer id, String name, Integer illness_id) {
+	public Analysis(Integer id, String name, Illness illness) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.illness_id = illness_id;
+		this.illness=illness;
 	}
 
 	public Integer getId() {
@@ -37,12 +53,12 @@ public class Analysis implements Serializable {
 		this.name = name;
 	}
 
-	public Integer getIllness_id() {
-		return illness_id;
+	public Illness getIllness() {
+		return illness;
 	}
 
-	public void setIllness_id(Integer illness_id) {
-		this.illness_id = illness_id;
+	public void setIllness(Illness illness) {
+		this.illness= illness;
 	}
 
 	@Override
