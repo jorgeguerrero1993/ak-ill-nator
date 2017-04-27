@@ -3,16 +3,30 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+@Entity
+@Table(name="Treatment")
 public class Treatment implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6224732364028493645L;
+	
+	@Id
+	@GeneratedValue(generator="Treatment")
+	@TableGenerator(name="Treatment", table="sqlite_sequence",
+					pkColumnName="name", valueColumnName="seq", pkColumnValue="Treatment")
 	private Integer id;
 	private String name ;
 	private String type;
-	private List <Illness> IllnessList = new ArrayList <>();
+	@OneToMany(mappedBy="treatment")
+	private List <Illness> IllnessList;
 	//Empty constructor
 	public Treatment() {
 		super();
