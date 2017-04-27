@@ -185,8 +185,7 @@ public class JDBCmanager implements Dbmanager{
 	public String updatePatient ( Patient updatedPat){
 		
 		try {
-			String sql = "UPDATE Patient SET name=? birthDate=? gender=? weight=?"
-					+ "WHERE id=?";
+			String sql = "UPDATE Patient SET name=?, birthDate=?, gender=?, weight=? WHERE id=?";
 			
 			PreparedStatement stmt=c.prepareStatement(sql);
 			stmt.setString(1, updatedPat.getName());
@@ -195,7 +194,7 @@ public class JDBCmanager implements Dbmanager{
 			stmt.setFloat(4, updatedPat.getWeight());
 			stmt.setInt(5, updatedPat.getId());
 			
-			stmt.executeUpdate(sql); 
+			stmt.executeUpdate(); 
 			stmt.close();
 			return "Done";
 		

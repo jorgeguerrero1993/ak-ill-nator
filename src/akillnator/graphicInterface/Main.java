@@ -102,19 +102,19 @@ public class Main {
 					System.out.println("Gender: masc/fem");
 					String gender=reader.readLine();
 					
-					if(birthdate.compareTo("\n")==0){
+					if(!birthdate.equals("")){
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 						LocalDate birthDate= LocalDate.parse(birthdate, formatter);
 						oldPat.setBirthDate(Date.valueOf(birthDate));
 					}
-					if(!name.equals("\n")){
+					if(!name.equals("")){
 						oldPat.setName(name);
 					}
 
-					if(weigth.equals("\n")){
+					if(!weigth.equals("")){
 						oldPat.setWeight(Float.parseFloat(weigth));
 					}
-					if(gender.equals("\n")){
+					if(!gender.equals("")){
 						oldPat.setGender(gender);
 					}
 					System.out.println(a.updatePatient(oldPat));
