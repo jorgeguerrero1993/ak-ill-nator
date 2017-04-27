@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xml.sax.helpers.ParserFactory;
+
 import akillnator.jbdc.JDBCmanager;
 import akillnator.pojo.Patient;
 
@@ -21,7 +23,7 @@ public class Main {
 		Integer answer=50;
 	 	while(answer!=0){
 			System.out.println(" MENU :"
-		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete");
+		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete \n 5.Update Patient");
 			 try{
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				answer = Integer.parseInt(reader.readLine());
@@ -90,19 +92,32 @@ public class Main {
 						}
 					}
 					
-					Patient newPat = new Patient();
 					System.out.println("Put the new information , ( If you don't want to update some information press ENTER");
 					System.out.println("Name: ");
 					name=reader.readLine();
 					System.out.println("Give me the birthdate: YYYY-MM-DD");
 					String birthdate=reader.readLine();
-					if(birthdate.compareTo("")==0){
+					System.out.println("Weigth:");
+					String weigth = reader.readLine();
+					System.out.println("Gender: masc/fem");
+					String gender=reader.readLine();
+					
+					if(birthdate.compareTo("\n")==0){
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 						LocalDate birthDate= LocalDate.parse(birthdate, formatter);
-						oldPat.setBirthDate(newPat.getBirthDate());
+						oldPat.setBirthDate(Date.valueOf(birthDate));
 					}
-					
-					a.updatePatient(newPat);
+					if(!name.equals("\n")){
+						oldPat.setName(name);
+					}
+
+					if(weigth.equals("\n")){
+						oldPat.setWeight(Float.parseFloat(weigth));
+					}
+					if(gender.equals("\n")){
+						oldPat.setGender(gender);
+					}
+					System.out.println(a.updatePatient(oldPat));
 					
 				}
 
