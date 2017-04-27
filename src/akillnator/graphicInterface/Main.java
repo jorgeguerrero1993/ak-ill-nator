@@ -23,7 +23,7 @@ public class Main {
 		Integer answer=50;
 	 	while(answer!=0){
 			System.out.println(" MENU :"
-		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete");
+		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete \n 5.Update Patient");
 			 try{
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				answer = Integer.parseInt(reader.readLine());
@@ -102,19 +102,19 @@ public class Main {
 					System.out.println("Gender: masc/fem");
 					String gender=reader.readLine();
 					
-					if(birthdate.compareTo("")==0){
+					if(birthdate.compareTo("\n")==0){
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 						LocalDate birthDate= LocalDate.parse(birthdate, formatter);
 						oldPat.setBirthDate(Date.valueOf(birthDate));
 					}
-					if(name.compareTo("")==0){
+					if(!name.equals("\n")){
 						oldPat.setName(name);
 					}
 
-					if(weigth.compareTo("")==0){
+					if(weigth.equals("\n")){
 						oldPat.setWeight(Float.parseFloat(weigth));
 					}
-					if(gender.compareTo("")==0){
+					if(gender.equals("\n")){
 						oldPat.setGender(gender);
 					}
 					System.out.println(a.updatePatient(oldPat));
