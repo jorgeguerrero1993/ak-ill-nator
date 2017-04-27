@@ -182,18 +182,18 @@ public class JDBCmanager implements Dbmanager{
 		System.out.println("It has been succesfully deleted");
 	}
 	
-	public String updatePatient ( Patient newPat){
+	public String updatePatient ( Patient updatedPat){
 		
 		try {
 			String sql = "UPDATE Patient SET name=? birthDate=? gender=? weight=?"
 					+ "WHERE id=?";
 			
 			PreparedStatement stmt=c.prepareStatement(sql);
-			stmt.setString(1, newPat.getName());
-			stmt.setDate(2, newPat.getBirthDate());
-			stmt.setString(3, newPat.getGender());
-			stmt.setFloat(4, newPat.getWeight());
-			stmt.setInt(5, newPat.getId());
+			stmt.setString(1, updatedPat.getName());
+			stmt.setDate(2, updatedPat.getBirthDate());
+			stmt.setString(3, updatedPat.getGender());
+			stmt.setFloat(4, updatedPat.getWeight());
+			stmt.setInt(5, updatedPat.getId());
 			
 			stmt.executeUpdate(sql); 
 			stmt.close();
