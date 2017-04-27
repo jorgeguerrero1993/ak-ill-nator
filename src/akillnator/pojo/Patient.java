@@ -2,10 +2,14 @@ package akillnator.pojo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -25,7 +29,24 @@ public class Patient implements Serializable{
 	private String gender;
 	private float weight;
 	
+	@ManyToMany
+	@JoinTable(name="pat_prevevent",
+			joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
+			inverseJoinColumns={@JoinColumn(name="prev_id", referencedColumnName="id")})
+	List<PreviousEvents> prev;
 	
+	@ManyToMany
+	@JoinTable(name="pat_ill",
+			joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
+			inverseJoinColumns={@JoinColumn(name="ill_id", referencedColumnName="id")})
+	List<Illness> illness;
+	
+	@ManyToMany
+	@JoinTable(name="pat_drugs",
+	joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
+	inverseJoinColumns={@JoinColumn(name="drugs_id", referencedColumnName="id")})
+	List<Drugs> drugs;
+	//@ManyToMany preguntar bien las association class
 	public Patient() {
 		super();
 	}

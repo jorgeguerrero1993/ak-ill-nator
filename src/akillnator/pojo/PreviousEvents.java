@@ -1,15 +1,33 @@
 package akillnator.pojo;
 
 import java.io.Serializable;
-//hello it me
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+@Entity
+@Table(name="PreviousEvents")
 public class PreviousEvents implements Serializable{
 
 	private static final long serialVersionUID = 2900707925162426155L;
 	
+	@Id
+	@GeneratedValue(generator="PreviousEvents")
+	@TableGenerator(name="PreviousEvents", table="sqlite_sequence",
+			pkColumnName="name", valueColumnName="seq", pkColumnValue="PreviousEvents")
 	private Integer id;
 	private String environment;
 	private String accident;
 	
+	@ManyToMany(mappedBy="prev")
+	List<Patient> patient;
+	@ManyToMany(mappedBy="prev")
+	List<Symptons> symptons;
 	public PreviousEvents(){
 		super();
 	}

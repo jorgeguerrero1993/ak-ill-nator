@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -27,6 +28,13 @@ public class Symptons implements Serializable{
 	
 	@ManyToMany(mappedBy="symptons")
 	private List<Illness> illness;
+	
+	@ManyToMany
+	@JoinTable(name="symp_prev",
+			joinColumns={@JoinColumn(name="symp_id", referencedColumnName="id")},
+			inverseJoinColumns={@JoinColumn(name="prev_id", referencedColumnName="id")})
+	
+	private List<PreviousEvents> prev;
 	public Symptons(){
 		super();
 	}
