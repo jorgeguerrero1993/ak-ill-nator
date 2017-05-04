@@ -103,7 +103,7 @@ public class Main {
 					String gender=reader.readLine();
 					
 					if(!birthdate.equals("")){
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
 						LocalDate birthDate= LocalDate.parse(birthdate, formatter);
 						oldPat.setBirthDate(Date.valueOf(birthDate));
 					}
