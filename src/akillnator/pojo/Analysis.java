@@ -9,9 +9,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="Analysis")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Analysis")
 public class Analysis implements Serializable {
 
 	private static final long serialVersionUID = -2545657309934633583L;
@@ -20,10 +27,13 @@ public class Analysis implements Serializable {
 	@GeneratedValue(generator="Analysis")
 	@TableGenerator(name="Analysis", table="sqlite_sequence",
 					pkColumnName="name", valueColumnName="seq", pkColumnValue="Analysis")
+	@XmlTransient
 	private Integer id;
+	@XmlAttribute
 	private String name ;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="illness_id")
+	@XmlElement(name="Illness")
 	private Illness illness;
 	
 	public Analysis() {

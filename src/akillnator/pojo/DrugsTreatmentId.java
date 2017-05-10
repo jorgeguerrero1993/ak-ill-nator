@@ -16,8 +16,12 @@ public class DrugsTreatmentId implements Serializable{
 		return(int) (drugs_id + treatment_id);
 	}
 	
-	public boolean equals(Object obj){
-		if()
-		
+	public boolean equals(Object object){
+		if(object instanceof DrugsTreatmentId){
+			DrugsTreatmentId otherId=(DrugsTreatmentId) object;
+			return (otherId.drugs_id== this.drugs_id) && 
+					(otherId.treatment_id==this.treatment_id);
+		}
+		return false;
 	}
 }

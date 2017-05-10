@@ -12,9 +12,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="Patient")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Patient")
 public class Patient implements Serializable{
 
 	private static final long serialVersionUID = -8841012208499645685L;
@@ -23,30 +30,45 @@ public class Patient implements Serializable{
 	@GeneratedValue(generator="Patient")
 	@TableGenerator(name="Patient",table="sqlite_sequence",
 			pkColumnName="name", valueColumnName="seq",pkColumnValue="Patient")
+	@XmlTransient
 	private  Integer id;
+	@XmlAttribute
 	private String name;
+	@XmlAttribute
 	private Date birthDate;
+	@XmlAttribute
 	private String gender;
+	@XmlAttribute
 	private float weight;
 	
 	@ManyToMany
 	@JoinTable(name="pat_prevevent",
 			joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
 			inverseJoinColumns={@JoinColumn(name="prev_id", referencedColumnName="id")})
+	@XmlElement(name="PreviousEvent")
 	List<PreviousEvents> prev;
 	
 	@ManyToMany
 	@JoinTable(name="pat_ill",
 			joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
 			inverseJoinColumns={@JoinColumn(name="ill_id", referencedColumnName="id")})
+	@XmlElement(name="Illness")
 	List<Illness> illness;
 	
 	@ManyToMany
 	@JoinTable(name="pat_drugs",
 	joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="drugs_id", referencedColumnName="id")})
+	@XmlElement(name="Drug")
 	List<Drugs> drugs;
-	//@ManyToMany preguntar bien las association class
+	
+	@ManyToMany
+	@JoinTable(name="pat_symptons",
+	joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
+	inverseJoinColumns={@JoinColumn(name="symptons_id", referencedColumnName="id")})
+	@XmlElement(name="Sympton")
+	List<Symptons> symptons;
+	
 	public Patient() {
 		super();
 	}

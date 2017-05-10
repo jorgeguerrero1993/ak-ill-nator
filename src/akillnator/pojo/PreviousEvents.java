@@ -9,9 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="PreviousEvents")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="PreviousEvents")
 public class PreviousEvents implements Serializable{
 
 	private static final long serialVersionUID = 2900707925162426155L;
@@ -20,13 +27,19 @@ public class PreviousEvents implements Serializable{
 	@GeneratedValue(generator="PreviousEvents")
 	@TableGenerator(name="PreviousEvents", table="sqlite_sequence",
 			pkColumnName="name", valueColumnName="seq", pkColumnValue="PreviousEvents")
+	@XmlTransient
 	private Integer id;
+	@XmlAttribute
 	private String environment;
+	@XmlAttribute
 	private String accident;
 	
 	@ManyToMany(mappedBy="prev")
+	@XmlElement(name="Patient")
 	List<Patient> patient;
+	
 	@ManyToMany(mappedBy="prev")
+	@XmlElement(name="Sympton")
 	List<Symptons> symptons;
 	public PreviousEvents(){
 		super();

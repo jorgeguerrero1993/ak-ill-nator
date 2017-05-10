@@ -13,6 +13,10 @@ import javax.persistence.Table;
 @Table(name="DrugsTreatment")
 @IdClass(DrugsTreatmentId.class)
 public class DrugsTreatment implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	private Integer drugs_id;
 	@Id

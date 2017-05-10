@@ -10,9 +10,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="Drugs")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Drugs")
 public class Drugs implements Serializable {
 	
 	private static final long serialVersionUID = -6779814022757918122L;
@@ -21,11 +28,15 @@ public class Drugs implements Serializable {
 	@GeneratedValue(generator="Drugs")
 	@TableGenerator(name="Drugs",table="sqlite_sequence",
 			pkColumnName="name", valueColumnName="seq",pkColumnValue="Drugs")
+	@XmlTransient
 	private Integer id;
+	@XmlAttribute
 	private String name;
+	@XmlAttribute
 	private String warnings;
 	
 	@ManyToMany(mappedBy="drugs")
+	@XmlElement(name="Patient")
 	List<Patient> patient;
 	
 	//Empty constructor

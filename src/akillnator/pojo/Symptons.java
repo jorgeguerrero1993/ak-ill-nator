@@ -11,9 +11,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="Symptons")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Symptons")
 public class Symptons implements Serializable{
 
 	private static final long serialVersionUID = 4762337477636000539L;
@@ -22,19 +29,27 @@ public class Symptons implements Serializable{
 	@GeneratedValue(generator="Symptons")
 	@TableGenerator(name="Symptons", table="sqlite_sequence",
 			pkColumnName="name", valueColumnName="seq", pkColumnValue="Symptons")
+	@XmlTransient
 	private Integer id;
+	@XmlAttribute
 	private String name;
+	@XmlAttribute
 	private String type;
 	
 	@ManyToMany(mappedBy="symptons")
+	@XmlElement(name="Illness")
 	private List<Illness> illness;
 	
 	@ManyToMany
 	@JoinTable(name="symp_prev",
 			joinColumns={@JoinColumn(name="symp_id", referencedColumnName="id")},
 			inverseJoinColumns={@JoinColumn(name="prev_id", referencedColumnName="id")})
-	
+	@XmlElement(name="PreviousEvent")
 	private List<PreviousEvents> prev;
+	
+	@ManyToMany(mappedBy="symptons")
+	@XmlElement(name="Patient")
+	private List<Patient> patient;
 	public Symptons(){
 		super();
 	}

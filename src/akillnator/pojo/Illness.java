@@ -13,9 +13,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="Illness")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Illness")
 public class Illness implements Serializable {
 	
 	private static final long serialVersionUID = -6017147906365330498L;
@@ -24,22 +31,28 @@ public class Illness implements Serializable {
 	@GeneratedValue(generator="Illness")
 	@TableGenerator(name="Illness", table="sqlite_sequence",
 					pkColumnName="name", valueColumnName="seq", pkColumnValue="Illness")
+	@XmlTransient
 	private Integer id;
+	@XmlAttribute
 	private String name;
+	@XmlAttribute
 	private String text;
+	@XmlAttribute
 	private String aprox_duration;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="treatment_id")
+	@XmlElement(name="Treatment")
 	private Treatment treatment; //% Es una fk, no meterlo en el toString
 	
 	@OneToMany(mappedBy="illness")
+	@XmlElement(name="Analysis")
 	private List <Analysis> AnalysisList; //% Tampoco meter en el toString
 	
 	@ManyToMany
 	@JoinTable(name="symp_ill",
 			joinColumns={@JoinColumn(name="ill_id", referencedColumnName="id")},
 			inverseJoinColumns={@JoinColumn(name="symp_id", referencedColumnName="id")})
-	
+	@XmlElement(name="Sympton")
 	private List<Symptons> symptons;
 	//Empty constructor
 	public Illness() {
