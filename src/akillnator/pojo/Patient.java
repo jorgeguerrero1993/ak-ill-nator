@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -47,6 +48,7 @@ public class Patient implements Serializable{
 			joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
 			inverseJoinColumns={@JoinColumn(name="prev_id", referencedColumnName="id")})
 	@XmlElement(name="PreviousEvent")
+	@XmlElementWrapper(name="PreviousEvents")
 	List<PreviousEvents> prev;
 	
 	@ManyToMany
@@ -54,6 +56,7 @@ public class Patient implements Serializable{
 			joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
 			inverseJoinColumns={@JoinColumn(name="ill_id", referencedColumnName="id")})
 	@XmlElement(name="Illness")
+	@XmlElementWrapper(name="Illnesses")
 	List<Illness> illness;
 	
 	@ManyToMany
@@ -61,6 +64,7 @@ public class Patient implements Serializable{
 	joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="drugs_id", referencedColumnName="id")})
 	@XmlElement(name="Drug")
+	@XmlElementWrapper(name="Drugs")
 	List<Drugs> drugs;
 	
 	@ManyToMany
