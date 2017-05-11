@@ -113,6 +113,8 @@ public class JDBCmanager implements Dbmanager{
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
 			"warnings TEXT)");
+			
+			
 			//Illness table
 			stmt.executeUpdate("CREATE TABLE Illness("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
@@ -120,6 +122,9 @@ public class JDBCmanager implements Dbmanager{
 			"text TEXT,"+
 			"aprox_duration TEXT, "+
 			"treatment_id INTEGER REFERENCES Treatment (id))");
+			
+			//vamos A RELLENAR ILLNESS Y TREATMENT CON PREPQUERY
+			
 			//Treatment table
 			stmt.executeUpdate("CREATE TABLE Treatment("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
