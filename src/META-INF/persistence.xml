@@ -17,6 +17,7 @@
 		<class>akillnator.pojo.PreviousEvents</class>
 		<class>akillnator.pojo.Symptons</class>
 		<class>akillnator.pojo.Treatment</class>
+		<class>akillnator.pojo.DrugsTreatment</class>
  
 		<properties>	
 			<!-- Connection properties -->
