@@ -34,6 +34,7 @@ public class JPAmanager implements Dbmanager {
 		em.close();
 	}
 	
+	//Create. En trabajo Diego
 	
 	
 	@Override
