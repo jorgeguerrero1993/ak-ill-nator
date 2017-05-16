@@ -1,3 +1,5 @@
+//En general, JPA solo funcionará si obtuvimos las clases (pacientes) a través de JPA
+
 package akillnator.jpa;
 
 import java.sql.DriverManager;
@@ -34,15 +36,15 @@ public class JPAmanager implements Dbmanager {
 		em.close();
 	}
 	
-	//Create de paciente. En trabajo Diego
-	public void createPatient(Patient patientCreated){
-		em.getTransaction().begin();
-		em.persist(patientCreated);
-		em.getTransaction().commit();
-		em.close();
-	}
 	
-	//Udpate paciente. En trabajo Diego
+	//Udpate paciente. En trabajo Diego. Sólo funcionara si el paciente que vamos a updatear, se obtuvo a través de jpa
+	@Override
+	public String updatePatient(Patient newPat) {
+		em.getTransaction().begin();
+		em.getTransaction().commit();
+
+		return null;
+	}
 	
 	@Override
 	public List<Patient> getAllPatients() {
@@ -63,15 +65,17 @@ public class JPAmanager implements Dbmanager {
 	}
 
 	@Override
-	public String updatePatient(Patient newPat) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Patient> searchByName(String nameToSearch) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	//
+	@Override
+	public void insertPatient(Patient patientCreated) {
+		em.getTransaction().begin();
+		em.persist(patientCreated);
+		em.getTransaction().commit();
 	}
 
 }

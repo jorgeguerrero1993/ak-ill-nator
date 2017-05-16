@@ -7,6 +7,7 @@ import akillnator.pojo.Patient;
 
 public interface Dbmanager {
 	public List <Patient> getAllPatients();
+	public void insertPatient(Patient Abe);
 	public void createTable();
 	public void deletePatient(int id)throws SQLException;
 	public String updatePatient ( Patient newPat);
