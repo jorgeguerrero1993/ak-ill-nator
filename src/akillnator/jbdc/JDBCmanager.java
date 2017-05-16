@@ -18,6 +18,14 @@ import akillnator.pojo.Patient;
 
 public class JDBCmanager implements Dbmanager{
 	
+	
+	
+	
+	//PREPARESTATEMENT DE TREATMENT PARA RELLENARLO
+	
+	
+	
+	
 	private Connection c;
 	
 	public JDBCmanager(){
@@ -87,6 +95,52 @@ public class JDBCmanager implements Dbmanager{
 		}
 		return returnedList;
 	}
+	
+	 public void insertIllness() throws SQLException{
+     	
+    	 String sql = "INSERT ILLNESS id=?, name=?, type=?, aprox_duration=?, treatment_id=?";
+         PreparedStatement stmt1=c.prepareStatement(sql);
+         
+        int contador= 0;
+        String name;
+        String type;
+        String aprox_duration;
+        int treatment_id;
+        
+        while(contador<4){
+        	switch(contador){
+        	case 0:
+        		  name="Flu" ;
+        	      type="Viric";
+        	      aprox_duration="3 to 5 days";
+                  treatment_id= 1;
+        	case 1:
+        		name= "High fever";
+      	        type="Genetic";
+      	        aprox_duration="Chronic illness";
+                treatment_id=2 ;
+        	case 2:
+        		name="Apendicitis";
+      	        type= "Bacterial Infection";
+      	        aprox_duration="2-3 days in hospital + few weeks";
+                treatment_id=3;
+        	case 3:
+        		name="Stomach flu";
+      	        type="Viral or bacterial";
+      	        aprox_duration= "24 hours";
+                treatment_id=4;
+        	
+    	stmt1.setInt(1,contador);
+    	stmt1.setString(2,name);
+    	stmt1.setString(3,type );
+    	stmt1.setString(4,aprox_duration );
+    	stmt1.setInt(5,treatment_id);
+	
+    	stmt1.executeUpdate(); 
+    	stmt1.close();
+        	}
+        }
+	 }
 			
 	public void createTable(){
 		try{
@@ -115,13 +169,19 @@ public class JDBCmanager implements Dbmanager{
 			"warnings TEXT)");
 			
 			
+			
+			
 			//Illness table
 			stmt.executeUpdate("CREATE TABLE Illness("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name INTEGER,"+
-			"text TEXT,"+
+			"text TYPE,"+
 			"aprox_duration TEXT, "+
 			"treatment_id INTEGER REFERENCES Treatment (id))");
+			
+           
+           
+        
 			
 			//vamos A RELLENAR ILLNESS Y TREATMENT CON PREPQUERY
 			
@@ -130,6 +190,9 @@ public class JDBCmanager implements Dbmanager{
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
 			"type TEXT)");
+			
+			
+			
 			//Analysis table
 			stmt.executeUpdate("CREATE TABLE Analysis("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
