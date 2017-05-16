@@ -34,8 +34,15 @@ public class JPAmanager implements Dbmanager {
 		em.close();
 	}
 	
-	//Create. En trabajo Diego
+	//Create de paciente. En trabajo Diego
+	public void createPatient(Patient patientCreated){
+		em.getTransaction().begin();
+		em.persist(patientCreated);
+		em.getTransaction().commit();
+		em.close();
+	}
 	
+	//Udpate paciente. En trabajo Diego
 	
 	@Override
 	public List<Patient> getAllPatients() {
