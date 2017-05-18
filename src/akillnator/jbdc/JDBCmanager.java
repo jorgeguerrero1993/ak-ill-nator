@@ -185,6 +185,10 @@ public class JDBCmanager implements Dbmanager{
 			insertIllness(3,"Apendicitis","Bacterial infection","2-3 days in hospital + few weeks.",3);
 			insertIllness(4, "Stomach flu", "Viral or bacterial", "24 hours", 4);
 			
+<<<<<<< HEAD
+=======
+			 insertIllness();
+>>>>>>> branch 'master' of https://github.com/jorgeguerrero1993/ak-ill-nator
            
         
 			
