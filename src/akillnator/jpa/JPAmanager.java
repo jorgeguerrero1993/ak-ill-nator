@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
 import akillnator.jbdc.Dbmanager;
+import akillnator.pojo.Illness;
 import akillnator.pojo.Patient;
 
 public class JPAmanager implements Dbmanager {
@@ -77,7 +78,7 @@ public class JPAmanager implements Dbmanager {
 		em.getTransaction().commit();
 	}
     // JPA read illness method to obtain a list with all of them 
-	public list<Illness> getAllIllnessJPA (){
+	public List<Illness> getAllIllnessJPA (){
 		
 	}
 	
