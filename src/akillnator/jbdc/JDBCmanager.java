@@ -95,50 +95,54 @@ public class JDBCmanager implements Dbmanager{
 		return returnedList;
 	}
 	
-	 public void insertIllness() throws SQLException{
-     	
-    	 String sql = "INSERT ILLNESS id=?, name=?, type=?, aprox_duration=?, treatment_id=?";
-         PreparedStatement stmt1=c.prepareStatement(sql);
-         
-        int contador= 0;
-        String name;
-        String type;
-        String aprox_duration;
-        int treatment_id;
-        
-        while(contador<4){
-        	switch(contador){
-        	case 0:
-        		  name="Flu" ;
-        	      type="Viric";
-        	      aprox_duration="3 to 5 days";
-                  treatment_id= 1;
-        	case 1:
-        		name= "High fever";
-      	        type="Genetic";
-      	        aprox_duration="Chronic illness";
-                treatment_id=2 ;
-        	case 2:
-        		name="Apendicitis";
-      	        type= "Bacterial Infection";
-      	        aprox_duration="2-3 days in hospital + few weeks";
-                treatment_id=3;
-        	case 3:
-        		name="Stomach flu";
-      	        type="Viral or bacterial";
-      	        aprox_duration= "24 hours";
-                treatment_id=4;
-        	
-    	stmt1.setInt(1,contador);
-    	stmt1.setString(2,name);
-    	stmt1.setString(3,type );
-    	stmt1.setString(4,aprox_duration );
-    	stmt1.setInt(5,treatment_id);
-	
-    	stmt1.executeUpdate(); 
-    	stmt1.close();
-        	}
-        }
+	 public void insertIllness(int id, String name, String type, String aproxDuration, int treatmentId) throws SQLException{
+     	try{
+    		String sql = "INSERT Illness id=?, name=?, type=?, aprox_duration=?, treatment_id=?";
+            PreparedStatement stmt1=c.prepareStatement(sql);
+        	stmt1.setInt(1,id);
+        	stmt1.setString(2,name);
+        	stmt1.setString(3,type );
+        	stmt1.setString(4,aproxDuration );
+        	stmt1.setInt(5,treatmentId);
+    	
+        	stmt1.executeUpdate(); 
+        	stmt1.close();
+     		
+     	} catch (SQLException e){
+     		e.printStackTrace();
+     	}
+	 }
+	 
+	 public void insertSymptons(int id, String name, String type){
+		
+		 try {
+			String sql = "INSERT Symptons id=?, name=?, type=?";
+			PreparedStatement stmt1=c.prepareStatement(sql);
+			stmt1.setInt(1,id);
+			stmt1.setString(2,name);
+			stmt1.setString(3,type);
+			stmt1.executeUpdate();
+			stmt1.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 }
+	 
+	 public void insertTreatment(int id, String name, String type){
+		 try {
+			String sql = "INSERT Treatment id=?, name=?, type=?";
+			PreparedStatement stmt1=c.prepareStatement(sql);
+			stmt1.setInt(1,id);
+			stmt1.setString(2,name);
+			stmt1.setString(3,type);
+			stmt1.executeUpdate();
+			stmt1.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 
+		 
 	 }
 			
 	public void createTable(){
@@ -167,8 +171,7 @@ public class JDBCmanager implements Dbmanager{
 			"name TEXT,"+
 			"warnings TEXT)");
 			
-			
-			
+						
 			
 			//Illness table
 			stmt.executeUpdate("CREATE TABLE Illness("+
@@ -177,21 +180,22 @@ public class JDBCmanager implements Dbmanager{
 			"text TYPE,"+
 			"aprox_duration TEXT, "+
 			"treatment_id INTEGER REFERENCES Treatment (id))");
+			insertIllness(1,"Flu","Viric","3 to 5 days",1);
+			insertIllness(2,"High fever","Genetic","Cronic ilness",2);
+			insertIllness(3,"Apendicitis","Bacterial infection","2-3 days in hospital + few weeks.",3);
+			insertIllness(4, "Stomach flu", "Viral or bacterial", "24 hours", 4);
 			
-           
            
         
 			
-			//vamos A RELLENAR ILLNESS Y TREATMENT CON PREPQUERY
+//////////////USAR LAS FUNCIONES INSERTAR PARA RELLENAR 
+//////////////LAS TABLAS SINTOMAS Y TRATAMIENTO
 			
 			//Treatment table
 			stmt.executeUpdate("CREATE TABLE Treatment("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
 			"type TEXT)");
-			
-			
-			
 			//Analysis table
 			stmt.executeUpdate("CREATE TABLE Analysis("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
