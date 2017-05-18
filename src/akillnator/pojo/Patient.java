@@ -4,21 +4,9 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.persistence.*;
+import javax.xml.bind.annotation.*;
+//import sample.db.xml.utils.SQLDateAdapter;
 
 @Entity
 @Table(name="Patient")
@@ -36,8 +24,11 @@ public class Patient implements Serializable{
 	private  Integer id;
 	@XmlAttribute
 	private String name;
-	@XmlAttribute
+	
+	@XmlJavaTypeAdapter(SQLDateAdapter.class)
 	private Date birthDate;
+	
+	
 	@XmlAttribute
 	private String gender;
 	@XmlAttribute

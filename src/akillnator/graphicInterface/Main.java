@@ -2,6 +2,7 @@
 
 package akillnator.graphicInterface;
 import akillnator.jbdc.*;
+import akillnator.xml.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,6 +17,7 @@ import org.xml.sax.helpers.ParserFactory;
 import akillnator.jbdc.JDBCmanager;
 import akillnator.pojo.Patient;
 
+@SuppressWarnings("deprecation")
 public class Main {
 	
 	public static void main(String[] args) {
@@ -122,7 +124,24 @@ public class Main {
 				}
 				
 				if(answer==6){
-					
+				
+					System.out.println("Write the name of the patient that you\n want to MARSHALL :");
+					String name = reader.readLine();
+					List <Patient> patientListByName = a.searchByName(name);
+					for (Patient patient : patientListByName) {
+						System.out.println(patient+" \n");
+					}
+					System.out.println(" Which one is it? \n ID :");
+					Integer id = Integer.parseInt(reader.readLine());
+					Patient oldPat=new Patient();
+					for (Patient patient : patientListByName) {
+						if(patient.getId()==id){
+							oldPat=patient;
+							break;
+						}
+					}
+					XMLmanager manager = new XMLmanager();
+					manager.marshalling(oldPat);
 				}
 
 			 }

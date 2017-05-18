@@ -89,6 +89,9 @@ public class JDBCmanager implements Dbmanager{
 			stmt.close();
 		} 
 		
+		
+		
+		
 		catch (SQLException e){
 			e.printStackTrace();
 		}
