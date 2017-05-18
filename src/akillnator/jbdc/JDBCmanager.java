@@ -119,10 +119,7 @@ public class JDBCmanager implements Dbmanager{
 	}
 	
 	
-<<<<<<< HEAD
-=======
-	
->>>>>>> branch 'master' of https://github.com/jorgeguerrero1993/ak-ill-nator
+
 	 public void insertIllness(int id, String name, String type, String aproxDuration, int treatmentId) throws SQLException{
      	try{
     		String sql = "INSERT Illness id=?, name=?, type=?, aprox_duration=?, treatment_id=?";
@@ -185,7 +182,7 @@ public class JDBCmanager implements Dbmanager{
 			"birthDate DATE,"+
 			"gender TEXT,"+
 			"weight FLOAT)");
-			//Symptons table
+			//Symptons table  CORREGIR FALTA DE ORTOGRAFÍA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			stmt.executeUpdate("CREATE TABLE Symptons("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+

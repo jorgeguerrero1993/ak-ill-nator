@@ -1,21 +1,23 @@
-//En general, JPA solo funcionará si obtuvimos las clases (pacientes) a través de JPA
+
 
 package akillnator.jpa;
 
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import akillnator.jbdc.Dbmanager;
-<<<<<<< HEAD
+
 import akillnator.pojo.*;
-=======
+
 import akillnator.pojo.Illness;
 import akillnator.pojo.Patient;
->>>>>>> branch 'master' of https://github.com/jorgeguerrero1993/ak-ill-nator
+
 
 public class JPAmanager implements Dbmanager {
 	
@@ -81,9 +83,32 @@ public class JPAmanager implements Dbmanager {
 		em.persist(patientCreated);
 		em.getTransaction().commit();
 	}
+	
+	
+	
+	
     // JPA read illness method to obtain a list with all of them 
 	public List<Illness> getAllIllnessJPA (){
+	
+	    Query q= em.createNativeQuery("SELECT * FROM Illness", Illness.class);
+	    List <Illness> lista = q.getResultList();
+		return lista;
 		
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
