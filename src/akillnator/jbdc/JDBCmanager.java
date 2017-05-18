@@ -178,7 +178,7 @@ public class JDBCmanager implements Dbmanager{
 			"aprox_duration TEXT, "+
 			"treatment_id INTEGER REFERENCES Treatment (id))");
 			
-           
+			 insertIllness();
            
         
 			

@@ -20,13 +20,15 @@ public class XMLmanager {
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,Boolean.TRUE);
 			marshaller.marshal(pat, XMLFile);
 			marshaller.marshal(pat, System.out);
+			System.out.println("                   IT IS MARSHALLED             ");
+			
 			} catch (JAXBException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 
-	public void unmarshakking(File XMLFile){
+	public void unmarshalling(File XMLFile){
 		
 		try{
 			JAXBContext jaxbc=JAXBContext.newInstance(Patient.class);

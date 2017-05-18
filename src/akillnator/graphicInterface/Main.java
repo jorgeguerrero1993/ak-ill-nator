@@ -23,7 +23,7 @@ public class Main {
 		Integer answer=50;
 	 	while(answer!=0){
 			System.out.println(" MENU :"
-		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete \n 5.Update Patient");
+		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete \n 5.Update Patient \n 6.MARSHALL");
 			 try{
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				answer = Integer.parseInt(reader.readLine());
@@ -118,6 +118,10 @@ public class Main {
 						oldPat.setGender(gender);
 					}
 					System.out.println(a.updatePatient(oldPat));
+					
+				}
+				
+				if(answer==6){
 					
 				}
 
