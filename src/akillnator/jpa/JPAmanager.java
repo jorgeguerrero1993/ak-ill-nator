@@ -76,5 +76,9 @@ public class JPAmanager implements Dbmanager {
 		em.persist(patientCreated);
 		em.getTransaction().commit();
 	}
-
+    // JPA read illness method to obtain a list with all of them 
+	public list<Illness> getAllIllnessJPA (){
+		
+	}
+	
 }
