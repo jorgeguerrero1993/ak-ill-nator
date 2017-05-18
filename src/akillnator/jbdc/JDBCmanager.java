@@ -44,7 +44,6 @@ public class JDBCmanager implements Dbmanager{
   
    
 	public void insertPatient(Patient Abe ){
-		
 		try {
 			String sql = "INSERT INTO Patient (name,birthDate,gender,weight) "
 					+ "VALUES (?,?,?,?)"; //Faltan atributos Y AÑADIR ATRIBTOS NOT NULL

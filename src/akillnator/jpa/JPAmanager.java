@@ -42,7 +42,6 @@ public class JPAmanager implements Dbmanager {
 	public String updatePatient(Patient newPat) {
 		em.getTransaction().begin();
 		em.getTransaction().commit();
-
 		return null;
 	}
 	
