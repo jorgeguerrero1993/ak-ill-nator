@@ -11,10 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import akillnator.pojo.Analysis;
-import akillnator.pojo.Drugs;
-import akillnator.pojo.Illness;
-import akillnator.pojo.Patient;
+import akillnator.pojo.*;
 
 public class JDBCmanager implements Dbmanager{
 	
@@ -90,6 +87,29 @@ public class JDBCmanager implements Dbmanager{
 		} 
 		
 		
+		catch (SQLException e){
+			e.printStackTrace();
+		}
+		return returnedList;
+	}
+	
+	
+	public List <Patient> getAllSymptoms(){
+		Statement stmt;
+		List <Patient> returnedList = new ArrayList<>(); 
+		try {
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Patient");
+			while(rs.next()){
+    			int id = rs.getInt("id");
+				String name = rs.getString("name");
+				Date birthDate=rs.getDate("birthDate");
+				String gender = rs.getString("gender");
+				float weight  = rs.getFloat("weight");
+				returnedList.add(new Patient(id,name,birthDate,gender,weight));
+			}
+			stmt.close();
+		} 
 		
 		
 		catch (SQLException e){
@@ -97,6 +117,7 @@ public class JDBCmanager implements Dbmanager{
 		}
 		return returnedList;
 	}
+	
 	
 	 public void insertIllness(int id, String name, String type, String aproxDuration, int treatmentId) throws SQLException{
      	try{

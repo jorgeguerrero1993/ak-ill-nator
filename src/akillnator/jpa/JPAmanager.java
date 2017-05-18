@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
 import akillnator.jbdc.Dbmanager;
-import akillnator.pojo.Patient;
+import akillnator.pojo.*;
 
 public class JPAmanager implements Dbmanager {
 	
