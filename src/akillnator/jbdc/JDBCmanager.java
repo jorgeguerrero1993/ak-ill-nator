@@ -95,6 +95,8 @@ public class JDBCmanager implements Dbmanager{
 		return returnedList;
 	}
 	
+	
+	
 	 public void insertIllness(int id, String name, String type, String aproxDuration, int treatmentId) throws SQLException{
      	try{
     		String sql = "INSERT Illness id=?, name=?, type=?, aprox_duration=?, treatment_id=?";
@@ -145,6 +147,8 @@ public class JDBCmanager implements Dbmanager{
 		 
 	 }
 			
+			
+			
 	public void createTable(){
 		try{
 			Statement stmt = c.createStatement();
@@ -185,10 +189,6 @@ public class JDBCmanager implements Dbmanager{
 			insertIllness(3,"Apendicitis","Bacterial infection","2-3 days in hospital + few weeks.",3);
 			insertIllness(4, "Stomach flu", "Viral or bacterial", "24 hours", 4);
 			
-<<<<<<< HEAD
-=======
-			 insertIllness();
->>>>>>> branch 'master' of https://github.com/jorgeguerrero1993/ak-ill-nator
            
         
 			
