@@ -46,6 +46,7 @@ public class JPAmanager implements Dbmanager {
 	@Override
 	public String updatePatient(Patient newPat) {
 		Query q=em.createNativeQuery("SELECT * FROM Patient WHERE id=?",Patient.class);
+		q.setParameter(1, newPat.getId());
 		Patient oldPatient = (Patient) q.getSingleResult();
 		em.getTransaction().begin();
 		oldPatient.setId(newPat.getId());
@@ -61,7 +62,8 @@ public class JPAmanager implements Dbmanager {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	//Not needed, already done in JDBC
 	@Override
 	public void createTable() {
 
@@ -69,7 +71,12 @@ public class JPAmanager implements Dbmanager {
 
 	@Override
 	public void deletePatient(int id) throws SQLException {
-
+		Query q=em.createNativeQuery("SELECT * FROM Patient WHERE id=?",Patient.class);
+		q.setParameter(1,id);
+		Patient fired = (Patient) q.getSingleResult();
+		em.getTransaction().begin();
+		em.remove(fired);
+		em.getTransaction().commit();
 	}
 
 	//
