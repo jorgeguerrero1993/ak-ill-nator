@@ -11,6 +11,5 @@ public interface Dbmanager {
 	public void createTable();
 	public void deletePatient(int id)throws SQLException;
 	public String updatePatient ( Patient newPat);
-	public List<Patient> searchByName(String nameToSearch);
 	
 }

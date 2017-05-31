@@ -1,5 +1,3 @@
-
-
 package akillnator.jpa;
 
 import java.sql.DriverManager;
@@ -44,12 +42,18 @@ public class JPAmanager implements Dbmanager {
 	}
 	
 	
-	//Udpate paciente. En trabajo Diego. Sólo funcionara si el paciente que vamos a updatear, se obtuvo a través de jpa
+	//No estoy seguro de que se haga así
 	@Override
 	public String updatePatient(Patient newPat) {
+		Query q=em.createNativeQuery("SELECT * FROM Patient WHERE id=?",Patient.class);
+		Patient oldPatient = (Patient) q.getSingleResult();
 		em.getTransaction().begin();
+		oldPatient.setId(newPat.getId());
+		oldPatient.setBirthDate(newPat.getBirthDate());
+		oldPatient.setName(newPat.getName());
+		oldPatient.setWeight(newPat.getWeight());
 		em.getTransaction().commit();
-		return null;
+		return "Correctly Updated";
 	}
 	
 	@Override
@@ -60,22 +64,14 @@ public class JPAmanager implements Dbmanager {
 
 	@Override
 	public void createTable() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deletePatient(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		
+
 	}
 
-	@Override
-	public List<Patient> searchByName(String nameToSearch) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	//
 	@Override
 	public void insertPatient(Patient patientCreated) {
@@ -83,13 +79,9 @@ public class JPAmanager implements Dbmanager {
 		em.persist(patientCreated);
 		em.getTransaction().commit();
 	}
-	
-	
-	
-	
+
     // JPA read illness method to obtain a list with all of them 
 	public List<Illness> getAllIllnessJPA (){
-	
 	    Query q= em.createNativeQuery("SELECT * FROM Illness", Illness.class);
 	    List <Illness> lista = q.getResultList();
 		return lista;
