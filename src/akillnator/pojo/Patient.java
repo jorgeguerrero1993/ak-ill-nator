@@ -149,10 +149,12 @@ public class Patient implements Serializable{
     	symptons.add(b);
     }
     
-    public void getSymptons(){
-    	JDBCmanager manager= new JDBCmanager();
-		List<Symptons> allSymptons = manager.getAllSymptoms();
-	}
+    public List<Symptons> getSymptons(){
+    	
+    	return symptons;
+	
+      }
+   
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -180,9 +182,11 @@ public class Patient implements Serializable{
 
 	@Override
 	public String toString() {
+	
+		Symptons s = symptons.get(1);
 		return "Patient [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", gender=" + gender + ", weight=" + weight
 				+ "]";
 	}
-	
+	//"Symptom  " + s +
 	
 }

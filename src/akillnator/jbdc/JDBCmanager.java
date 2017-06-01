@@ -71,18 +71,22 @@ public class JDBCmanager implements Dbmanager{
 
 	public List <Patient> getAllPatients(){
 		Statement stmt;
+		JDBCmanager d= new JDBCmanager();
 		List <Patient> returnedList = new ArrayList<>(); 
 		try {
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Patient");
 			while(rs.next()){
+				int counter= 1;
     			int id = rs.getInt("id");
 				String name = rs.getString("name");
 				Date birthDate=rs.getDate("birthDate");
 				String gender = rs.getString("gender");
 				float weight  = rs.getFloat("weight");
-				// aqui estoy ahora : List<Symptons>= 
-				returnedList.add(new Patient(id,name,birthDate,gender,weight));
+				Patient p=new Patient(id,name,birthDate,gender,weight);
+				p.addSymptom(d.getSymptom(counter));
+				returnedList.add(p);
+				counter++;
 			}
 			stmt.close();
 		} 
@@ -158,7 +162,7 @@ public class JDBCmanager implements Dbmanager{
 
 	 public void insertIllness(int id, String name, String type, String aproxDuration, int treatmentId) throws SQLException{
      	try{
-    		String sql = "INSERT Illness id=?, name=?, type=?, aprox_duration=?, treatment_id=?";
+    		String sql = "INSERT INTO Illness (id, name, type, aprox_duration, treatment_id" + "VALUES (?,?,?,?,?)";
             PreparedStatement stmt1=c.prepareStatement(sql);
         	stmt1.setInt(1,id);
         	stmt1.setString(2,name);
@@ -212,7 +216,7 @@ public class JDBCmanager implements Dbmanager{
 		try{
 			Statement stmt = c.createStatement();
 			//Patient table
-			stmt.executeUpdate("CREATE TABLE Patient(" + 
+			stmt.executeUpdate("CREATE TABLE Patient (" + 
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
 			"birthDate DATE,"+
