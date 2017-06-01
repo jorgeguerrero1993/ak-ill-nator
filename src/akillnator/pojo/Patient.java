@@ -150,8 +150,9 @@ public class Patient implements Serializable{
     }
     
     public List<Symptons> getSymptons(){
-    	JDBCmanager manager= new JDBCmanager();
-		List<Symptons> allSymptons = manager.getAllSymptoms();
+    	
+    	return symptons;
+	
 	}
 	@Override
 	public int hashCode() {
@@ -180,9 +181,11 @@ public class Patient implements Serializable{
 
 	@Override
 	public String toString() {
+	
+		Symptons s = symptons.get(1);
 		return "Patient [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", gender=" + gender + ", weight=" + weight
 				+ "]";
 	}
-	
+	//"Symptom  " + s +
 	
 }
