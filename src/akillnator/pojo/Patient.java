@@ -149,10 +149,16 @@ public class Patient implements Serializable{
     	symptons.add(b);
     }
     
+<<<<<<< HEAD
     public List<Symptons> getSymptons(){
     	
     	return symptons;
 	
+=======
+    public void getSymptons(){
+    	JDBCmanager manager= new JDBCmanager();
+		List<Symptons> allSymptons = manager.getAllSymptoms();
+>>>>>>> branch 'master' of https://github.com/jorgeguerrero1993/ak-ill-nator
 	}
 	@Override
 	public int hashCode() {

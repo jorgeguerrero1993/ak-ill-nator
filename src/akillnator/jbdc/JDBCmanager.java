@@ -22,13 +22,6 @@ import akillnator.pojo.*;
 public class JDBCmanager implements Dbmanager{
 	
 	
-	
-	
-	//PREPARESTATEMENT DE TREATMENT PARA RELLENARLO
-	
-	
-	
-	
 	private Connection c;
 	
 	public JDBCmanager(){
@@ -74,17 +67,7 @@ public class JDBCmanager implements Dbmanager{
 				e.printStackTrace();
 			}
 	}
-	
-
 		
-		/**
-		 * Simple transformation method. You can use it in your project.
-		 * @param sourcePath - Absolute path to source xml file.
-		 * @param xsltPath - Absolute path to xslt file.
-		 * @param resultDir - Directory where you want to put resulting files.
-		 */
-	
-	
 
 	public List <Patient> getAllPatients(){
 		Statement stmt;
@@ -148,7 +131,7 @@ public class JDBCmanager implements Dbmanager{
 		
 		try {
 		
-		String sql ="SELECT * FROM Symptons WHERE id LIKE ?";
+		String sql ="SELECT * FROM Symptons WHERE id = ?";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setInt(1, a);
 		ResultSet rs = prep.executeQuery();
