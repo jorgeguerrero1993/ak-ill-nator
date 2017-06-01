@@ -204,6 +204,10 @@ public class JDBCmanager implements Dbmanager{
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
 			"type TEXT)");
+			insertSymptons(1,"hot temperature","external");
+			insertSymptons(2,"sneeze mucus","external");
+			insertSymptons(3,"pain in the button","internal");
+			insertSymptons(4,"stamach ache","internal");
 			//Previous events table
 			stmt.executeUpdate("CREATE TABLE PreviousEvents("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
