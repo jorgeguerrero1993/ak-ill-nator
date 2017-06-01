@@ -21,7 +21,8 @@
             <tr>
             <td><i><xsl:value-of select="@name" /></i></td>
             <td><xsl:value-of select="@birthDate" /></td>
-            <td><xsl:value-of select="@Gender" /></td>
+            <td><xsl:value-of select="@gender" /></td>
+            <td><xsl:value-of select="@weight" /></td>
             </tr>
          
       </xsl:for-each>   
