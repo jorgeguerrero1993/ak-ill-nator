@@ -161,7 +161,8 @@ public class Main {
 					}
 					XMLmanager manager = new XMLmanager();
 					manager.marshalling(oldPat);
-					simpleTransform("./xmls/Patients.xml" ,"./akillnator.xml.html/akillnator.xslt","./akillnator.xml.html/PruebaHTML.html");
+					//simpleTransform("./xmls/Patients.xml" ,"./akillnator.xml.html/akillnator.xslt","./akillnator.xml.html/PruebaHTML.html");
+					simpleTransform("C:/SPB_Data/git/ak-ill-nator/xmls/Patients.xml" ,"C:/SPB_Data/git/ak-ill-nator/src/akillnator/xml/akillnator.xslt","C:/SPB_Data/git/ak-ill-nator/generatedHtml/PruebaHTML.html");
 				}
 				
 				if( answer ==7){
