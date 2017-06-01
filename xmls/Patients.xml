@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Patient name="guti" gender="masc" weight="68.0">
+<Patient>
+    <name>guti</name>
     <birthDate>1997-09-28</birthDate>
+    <gender>masc</gender>
+    <weight>68.0</weight>
 </Patient>
