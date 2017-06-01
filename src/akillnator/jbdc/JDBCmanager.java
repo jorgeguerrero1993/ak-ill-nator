@@ -204,7 +204,7 @@ public class JDBCmanager implements Dbmanager{
 			stmt.executeUpdate("CREATE TABLE Illness("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name INTEGER,"+
-			"text TYPE,"+
+			"type TEXT,"+
 			"aprox_duration TEXT, "+
 			"treatment_id INTEGER REFERENCES Treatment (id))");
 			insertIllness(1,"Flu","Viric","3 to 5 days",1);
