@@ -30,9 +30,9 @@ public class PreviousEvents implements Serializable{
 			pkColumnName="name", valueColumnName="seq", pkColumnValue="PreviousEvents")
 	@XmlTransient
 	private Integer id;
-	@XmlAttribute
+	@XmlElement
 	private String environment;
-	@XmlAttribute
+	@XmlElement
 	private String accident;
 	
 	@ManyToMany(mappedBy="prev")

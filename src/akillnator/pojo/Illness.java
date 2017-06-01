@@ -34,11 +34,11 @@ public class Illness implements Serializable {
 					pkColumnName="name", valueColumnName="seq", pkColumnValue="Illness")
 	@XmlTransient
 	private Integer id;
-	@XmlAttribute
+	@XmlElement
 	private String name;
-	@XmlAttribute
+	@XmlElement
 	private String text;
-	@XmlAttribute
+	@XmlElement
 	private String aprox_duration;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="treatment_id")

@@ -32,9 +32,9 @@ public class Symptons implements Serializable{
 			pkColumnName="name", valueColumnName="seq", pkColumnValue="Symptons")
 	@XmlTransient
 	private Integer id;
-	@XmlAttribute
+	@XmlElement
 	private String name;
-	@XmlAttribute
+	@XmlElement
 	private String type;
 	
 	@ManyToMany(mappedBy="symptons")

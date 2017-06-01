@@ -30,7 +30,7 @@ public class Analysis implements Serializable {
 					pkColumnName="name", valueColumnName="seq", pkColumnValue="Analysis")
 	@XmlTransient
 	private Integer id;
-	@XmlAttribute
+	@XmlElement
 	private String name ;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="illness_id")
