@@ -2,11 +2,17 @@ package akillnator.pojo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import akillnator.jbdc.JDBCmanager;
 //import sample.db.xml.utils.SQLDateAdapter;
 
 @Entity
@@ -139,8 +145,14 @@ public class Patient implements Serializable{
 		this.weight = weight;
 	}
 
-
-
+    public void addSymptom(Symptons b){
+    	symptons.add(b);
+    }
+    
+    public List<Symptons> getSymptons(){
+    	JDBCmanager manager= new JDBCmanager();
+		List<Symptons> allSymptons = manager.getAllSymptoms();
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

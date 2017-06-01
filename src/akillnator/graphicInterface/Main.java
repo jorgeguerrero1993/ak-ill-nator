@@ -45,7 +45,7 @@ public class Main {
 		Integer answer=50;
 	 	while(answer!=0){
 			System.out.println(" MENU :"
-		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete \n 5.Update Patient \n 6.MARSHALL");
+		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete \n 5.Update Patient \n 6.Obtain HTML \n 7.Add Symptom");
 			 try{
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				answer = Integer.parseInt(reader.readLine());
@@ -167,12 +167,32 @@ public class Main {
 				}
 				
 				if( answer ==7){
+					
+					System.out.println("Write the name of the patient that you\n want to add a Symptom :");
+					String name = reader.readLine();
+					List <Patient> patientListByName = a.searchByName(name);
+					for (Patient patient : patientListByName) {
+						System.out.println(patient+" \n");
+					}
+					System.out.println(" Which one is it? \n ID :");
+					Integer id = Integer.parseInt(reader.readLine());
+					Patient oldPat=new Patient();
+					for (Patient patient : patientListByName) {
+						if(patient.getId()==id){
+							oldPat=patient;
+							break;
+						}
+					}
 					System.out.println("Choose a Sympton of the list(id): ");
 					List<Symptons> sympList=a.getAllSymptoms();
+				
 					for (Symptons symp : sympList) {
 						System.out.println(symp+" \n");
 					}
-					Integer id = Integer.parseInt(reader.readLine());
+					Integer id2 = Integer.parseInt(reader.readLine());
+					System.out.println("Your symptom has been register");
+					Symptons patientsympton = a.getSymptom(id2);
+					oldPat.addSymptom(patientsympton);
 					
 					
 				}

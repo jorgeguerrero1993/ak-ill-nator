@@ -98,6 +98,7 @@ public class JDBCmanager implements Dbmanager{
 				Date birthDate=rs.getDate("birthDate");
 				String gender = rs.getString("gender");
 				float weight  = rs.getFloat("weight");
+				// aqui estoy ahora : List<Symptons>= 
 				returnedList.add(new Patient(id,name,birthDate,gender,weight));
 			}
 			stmt.close();
@@ -110,27 +111,64 @@ public class JDBCmanager implements Dbmanager{
 		return returnedList;
 	}
 	
+	 public List <Symptons> getAllSymptoms(){
+			Statement stmt;
+			List <Symptons> returnedList = new ArrayList<>(); 
+			try {
+				stmt = c.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM Symptons");
+				while(rs.next()){
+	    			int id = rs.getInt("id");
+					String name = rs.getString("name");
+					String type = rs.getString("type");
+					returnedList.add(new Symptons(id,name,type));
+				}
+				stmt.close();
+			} 
+			
+			
+			
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+			return returnedList;
+		}
+
 	
-	public List <Symptons> getAllSymptoms(){
-		Statement stmt;
-		List <Symptons> returnedList = new ArrayList<>(); 
+	
+	public Symptons getSymptom(int a){
+
+	
+		Symptons b = new Symptons();
+	
+		
 		try {
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Symptons");
+		
+		String sql ="SELECT * FROM Symptons WHERE id LIKE ?";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.setInt(1, a);
+		ResultSet rs = prep.executeQuery();
+			
 			while(rs.next()){
     			int id = rs.getInt("id");
+    			b.setId(id);
 				String name = rs.getString("name");
+				b.setName(name);
 				String type = rs.getString("type");
-				returnedList.add(new Symptons(id,name,type));
+				b.setType(type);
+				
 			}
-			stmt.close();
+			prep.close();
+			return b;
+			
 		} 
-		
-		
+			
 		catch (SQLException e){
 			e.printStackTrace();
 		}
-		return returnedList;
+		
+		return b;
+		
 	}
 	
 	
