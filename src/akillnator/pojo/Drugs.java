@@ -31,9 +31,9 @@ public class Drugs implements Serializable {
 			pkColumnName="name", valueColumnName="seq",pkColumnValue="Drugs")
 	@XmlTransient
 	private Integer id;
-	@XmlAttribute
+	@XmlElement
 	private String name;
-	@XmlAttribute
+	@XmlElement
 	private String warnings;
 	
 	@ManyToMany(mappedBy="drugs")

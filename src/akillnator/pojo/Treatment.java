@@ -32,9 +32,9 @@ public class Treatment implements Serializable{
 					pkColumnName="name", valueColumnName="seq", pkColumnValue="Treatment")
 	@XmlTransient
 	private Integer id;
-	@XmlAttribute
+	@XmlElement
 	private String name ;
-	@XmlAttribute
+	@XmlElement
 	private String type;
 	@OneToMany(mappedBy="treatment")
 	@XmlElement(name="Illness")

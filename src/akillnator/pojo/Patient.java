@@ -23,14 +23,14 @@ public class Patient implements Serializable{
 			pkColumnName="name", valueColumnName="seq",pkColumnValue="Patient")
 	@XmlTransient
 	private  Integer id;
-	@XmlAttribute
+	@XmlElement
 	private String name;
 	
 	@XmlJavaTypeAdapter(SQLDateAdapter.class)
 	private Date birthDate;
 	
 	
-	@XmlAttribute
+	@XmlElement
 	private String gender;
 	@XmlAttribute
 	private float weight;
