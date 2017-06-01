@@ -10,19 +10,23 @@
          
 	    <tr bgcolor = "skyblue">
  		<th> Name </th>
-		<th> Birthdate </th>
+		<th> birthDate </th>
                 <th> Gender </th>
                 <th> Weight </th>
 	    </tr>
-        
-       <tr>
-	<td>
-	 
-        </td>
-	<td></td>
-	<td></td>
-	<td></td>
-       </tr>
+     
+      <xsl:for-each select="Patient">
+      <xsl:sort select="@name" />
+         
+            <tr>
+            <td><i><xsl:value-of select="@name" /></i></td>
+            <td><xsl:value-of select="@birthDate" /></td>
+            <td><xsl:value-of select="@Gender" /></td>
+            </tr>
+         
+      </xsl:for-each>   
+     
+   
        </table>
      </body>
      </html>
