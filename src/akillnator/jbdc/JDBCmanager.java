@@ -391,6 +391,18 @@ public class JDBCmanager implements Dbmanager{
 		}
 		return returnedList;
 	}
+	
+	public void linkSymtonsPatient(int idSymton, int idPatient){
+		try {
+			String sql = "UPDATE PatientSymptons SET sympId=? WHERE patID=?";
+			PreparedStatement stm = c.prepareStatement(sql);
+			stm.setInt(idSymton,1);
+			stm.setInt(idPatient,2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 }
 
