@@ -23,6 +23,7 @@ import org.xml.sax.helpers.ParserFactory;
 
 import akillnator.jbdc.JDBCmanager;
 import akillnator.pojo.Patient;
+import akillnator.pojo.Symptons;
 
 @SuppressWarnings("deprecation")
 public class Main {
@@ -166,6 +167,13 @@ public class Main {
 				}
 				
 				if( answer ==7){
+					System.out.println("Choose a Sympton of the list(id): ");
+					List<Symptons> sympList=a.getAllSymptoms();
+					for (Symptons symp : sympList) {
+						System.out.println(symp+" \n");
+					}
+					Integer id = Integer.parseInt(reader.readLine());
+					
 					
 				}
 				
