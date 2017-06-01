@@ -18,11 +18,13 @@
       <xsl:for-each select="Patient">
       <xsl:sort select="@name" />
          
-            <tr>
-            <td><i><xsl:value-of select="@name" /></i></td>
-            <td><xsl:value-of select="@birthDate" /></td>
-            <td><xsl:value-of select="@Gender" /></td>
-            </tr>
+            
+           <tr>
+    <td><xsl:value-of select="@name"/></td>
+    <td><xsl:value-of select="@birthDate"/></td>
+    <td><xsl:value-of select="@gender"/></td>
+     <td><xsl:value-of select="@weight"/></td>
+  </tr>
          
       </xsl:for-each>   
      
