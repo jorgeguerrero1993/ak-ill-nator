@@ -18,6 +18,7 @@
       <xsl:for-each select="Patient">
       <xsl:sort select="@name" />
          
+<<<<<<< HEAD
             
            <tr>
     <td><xsl:value-of select="@name"/></td>
@@ -25,6 +26,14 @@
     <td><xsl:value-of select="@gender"/></td>
      <td><xsl:value-of select="@weight"/></td>
   </tr>
+=======
+            <tr>
+            <td><i><xsl:value-of select="@name" /></i></td>
+            <td><xsl:value-of select="@birthDate" /></td>
+            <td><xsl:value-of select="@gender" /></td>
+            <td><xsl:value-of select="@weight" /></td>
+            </tr>
+>>>>>>> branch 'master' of https://github.com/jorgeguerrero1993/ak-ill-nator
          
       </xsl:for-each>   
      
