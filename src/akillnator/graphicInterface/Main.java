@@ -2,15 +2,22 @@
 
 package akillnator.graphicInterface;
 import akillnator.jbdc.*;
+
 import akillnator.xml.*;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.xml.sax.helpers.ParserFactory;
 
@@ -19,6 +26,18 @@ import akillnator.pojo.Patient;
 
 @SuppressWarnings("deprecation")
 public class Main {
+	
+	public static void simpleTransform(String sourcePath, String xsltPath,String resultDir) {
+		TransformerFactory tFactory = TransformerFactory.newInstance();
+		try {
+			Transformer transformer = tFactory.newTransformer(new StreamSource(new File(xsltPath)));
+			transformer.transform(new StreamSource(new File(sourcePath)),new StreamResult(new File(resultDir)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
 	
 	public static void main(String[] args) {
 		JDBCmanager a= new JDBCmanager();
@@ -142,7 +161,15 @@ public class Main {
 					}
 					XMLmanager manager = new XMLmanager();
 					manager.marshalling(oldPat);
+					simpleTransform("./xmls/Patients.xml" ,"./akillnator.xml.html/akillnator.xslt","./akillnator.xml.html/PruebaHTML.html");
 				}
+				
+				if( answer ==7){
+					
+				}
+				
+			
+				
 
 			 }
 			 catch(Exception e) {
