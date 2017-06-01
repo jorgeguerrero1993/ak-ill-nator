@@ -1,6 +1,7 @@
 package akillnator.jbdc;
 
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -10,6 +11,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import akillnator.pojo.*;
 
@@ -69,6 +75,17 @@ public class JDBCmanager implements Dbmanager{
 			}
 	}
 	
+
+		
+		/**
+		 * Simple transformation method. You can use it in your project.
+		 * @param sourcePath - Absolute path to source xml file.
+		 * @param xsltPath - Absolute path to xslt file.
+		 * @param resultDir - Directory where you want to put resulting files.
+		 */
+	
+	
+
 	public List <Patient> getAllPatients(){
 		Statement stmt;
 		List <Patient> returnedList = new ArrayList<>(); 
