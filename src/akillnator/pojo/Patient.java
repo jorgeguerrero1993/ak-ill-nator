@@ -149,7 +149,7 @@ public class Patient implements Serializable{
     	symptons.add(b);
     }
     
-    public List<Symptons> getSymptons(){
+    public void getSymptons(){
     	JDBCmanager manager= new JDBCmanager();
 		List<Symptons> allSymptons = manager.getAllSymptoms();
 	}
