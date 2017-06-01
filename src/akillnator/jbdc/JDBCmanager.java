@@ -111,19 +111,17 @@ public class JDBCmanager implements Dbmanager{
 	}
 	
 	
-	public List <Patient> getAllSymptoms(){
+	public List <Symptons> getAllSymptoms(){
 		Statement stmt;
-		List <Patient> returnedList = new ArrayList<>(); 
+		List <Symptons> returnedList = new ArrayList<>(); 
 		try {
 			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Patient");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Symptons");
 			while(rs.next()){
     			int id = rs.getInt("id");
 				String name = rs.getString("name");
-				Date birthDate=rs.getDate("birthDate");
-				String gender = rs.getString("gender");
-				float weight  = rs.getFloat("weight");
-				returnedList.add(new Patient(id,name,birthDate,gender,weight));
+				String type = rs.getString("type");
+				returnedList.add(new Symptons(id,name,type));
 			}
 			stmt.close();
 		} 
