@@ -370,11 +370,9 @@ public class JDBCmanager implements Dbmanager{
 		return returnedList;
 	}
 	
-	
-	//no estoy nada seguro de que sea una nn
 	public void linkSymtonsPatient(int idSymton, int idPatient){
 		try {
-			String sql = "UPDATE PatientSymptons SET sypId=? WHERE patID=?";
+			String sql = "UPDATE PatientSymptons SET sympId=? WHERE patID=?";
 			PreparedStatement stm = c.prepareStatement(sql);
 			stm.setInt(idSymton,1);
 			stm.setInt(idPatient,2);
