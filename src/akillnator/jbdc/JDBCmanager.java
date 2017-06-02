@@ -322,9 +322,9 @@ public class JDBCmanager implements Dbmanager{
 			prepStm.setInt(2, 3);
 			prepStm.executeUpdate();
 			prepStm.setInt(1,4);
-			prepStm.setInt(2, 4);
+			prepStm.setInt(2,4);
 			prepStm.executeUpdate();
-			
+			prepStm.close();
 			//Drugs - Treatment table
 			stmt.executeUpdate("CREATE TABLE DrugsTreatment("+
 			"drugsId INTEGER REFERENCES Drugs(id),"+
@@ -404,8 +404,8 @@ public class JDBCmanager implements Dbmanager{
 		try {
 			String sql = "INSERT INTO PatientSymptons (sympId, patID) VALUES (?,?)";
 			PreparedStatement stm = c.prepareStatement(sql);
-			stm.setInt(idSymton,1);
-			stm.setInt(idPatient,2);
+			stm.setInt(1,idSymton);
+			stm.setInt(2,idPatient);
 			stm.executeUpdate();
 			stm.close();
 		} catch (SQLException e) {
