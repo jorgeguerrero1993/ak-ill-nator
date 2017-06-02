@@ -70,7 +70,8 @@ public class Patient implements Serializable{
 	joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="symptons_id", referencedColumnName="id")})
 	@XmlElement(name="Sympton")
-	List<Symptons> symptons;
+	List<Symptons> symptons = new ArrayList<>() ;
+	
 	
 	public Patient() {
 		super();
@@ -82,6 +83,7 @@ public class Patient implements Serializable{
 		this.birthDate=birthDate;
 		this.gender=gender;
 		this.weight=weight;
+		
 	}
 	
 	public Patient(String name, Date birthDate, String gender, float weight){
@@ -183,10 +185,10 @@ public class Patient implements Serializable{
 	@Override
 	public String toString() {
 	
-		Symptons s = symptons.get(1);
+		
 		return "Patient [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", gender=" + gender + ", weight=" + weight
-				+ "]";
+				+"]";
 	}
-	//"Symptom  " + s +
+	//
 	
 }

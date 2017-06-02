@@ -68,7 +68,8 @@ public class JDBCmanager implements Dbmanager{
 			}
 	}
 		
-
+	
+	
 	public List <Patient> getAllPatients(){
 		Statement stmt;
 		JDBCmanager d= new JDBCmanager();
@@ -77,16 +78,15 @@ public class JDBCmanager implements Dbmanager{
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Patient");
 			while(rs.next()){
-				int counter= 1;
+				
     			int id = rs.getInt("id");
+    			System.out.println(" id = "+id);
 				String name = rs.getString("name");
 				Date birthDate=rs.getDate("birthDate");
 				String gender = rs.getString("gender");
 				float weight  = rs.getFloat("weight");
 				Patient p=new Patient(id,name,birthDate,gender,weight);
-				p.addSymptom(d.getSymptom(counter));
-				returnedList.add(p);
-				counter++;
+				returnedList.add(p);				
 			}
 			stmt.close();
 		} 
@@ -121,7 +121,28 @@ public class JDBCmanager implements Dbmanager{
 			return returnedList;
 		}
 
+	public Symptons getSymptonFromPatient( int idp) throws SQLException{
 	
+		String sql ="SELECT * FROM Patient WHERE id = ?";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.setInt(1, idp);
+		ResultSet rs = prep.executeQuery();
+			
+			Patient b = new Patient();
+			int id = rs.getInt("id");
+			String name = rs.getString("name");
+			Date birthDate=rs.getDate("birthDate");
+			String gender = rs.getString("gender");
+			float weight  = rs.getFloat("weight");
+			Patient p=new Patient(id,name,birthDate,gender,weight);
+			List <Symptons> sint=p.getSymptons();
+			Symptons symp = sint.get(1);
+			prep.close();
+			
+			 return symp;
+				
+			
+	}
 	
 	public Symptons getSymptom(int a){
 
@@ -131,7 +152,7 @@ public class JDBCmanager implements Dbmanager{
 		
 		try {
 		
-		String sql ="SELECT * FROM Symptons WHERE id = ?";
+		String sql ="SELECT * FROM Symptons WHERE id LIKE ?";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setInt(1, a);
 		ResultSet rs = prep.executeQuery();
@@ -231,6 +252,7 @@ public class JDBCmanager implements Dbmanager{
 			insertSymptons(2,"sneeze mucus","external");
 			insertSymptons(3,"pain in the button","internal");
 			insertSymptons(4,"stamach ache","internal");
+			insertSymptons(5,"none","none");
 			//Previous events table
 			stmt.executeUpdate("CREATE TABLE PreviousEvents("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+

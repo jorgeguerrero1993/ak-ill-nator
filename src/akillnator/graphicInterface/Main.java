@@ -78,7 +78,7 @@ public class Main {
 					a.createTable();
 				}
 				if(answer==3){
-
+                   
 					List <Patient> listpat = a.getAllPatients();
 					for (Patient patient : listpat) {
 						System.out.println(patient);
