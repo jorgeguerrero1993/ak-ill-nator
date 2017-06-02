@@ -45,7 +45,7 @@ public class Main {
 		Integer answer=50;
 	 	while(answer!=0){
 			System.out.println(" MENU :"
-		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete \n 5.Update Patient \n 6.Obtain HTML \n 7.Add Symptom");
+		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete \n 5.Update Patient \n 6.Obtain HTML \n 7.Add Symptom  \n8.Evaluate patient illness");
 			 try{
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				answer = Integer.parseInt(reader.readLine());
@@ -199,6 +199,9 @@ public class Main {
 					
 				}
 				
+				if (answer==8){
+					
+				}
 			
 				
 
