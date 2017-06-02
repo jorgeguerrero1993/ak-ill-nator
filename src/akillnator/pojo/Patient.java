@@ -41,6 +41,7 @@ public class Patient implements Serializable{
 	@XmlElement
 	private float weight;
 	
+	
 	@ManyToMany
 	@JoinTable(name="pat_prevevent",
 			joinColumns={@JoinColumn(name="pat_id", referencedColumnName="id")},
@@ -73,6 +74,9 @@ public class Patient implements Serializable{
 	List<Symptons> symptons = new ArrayList<>() ;
 	
 	
+	
+	
+	
 	public Patient() {
 		super();
 	}
@@ -83,6 +87,8 @@ public class Patient implements Serializable{
 		this.birthDate=birthDate;
 		this.gender=gender;
 		this.weight=weight;
+
+		
 		
 	}
 	
@@ -149,6 +155,7 @@ public class Patient implements Serializable{
 
     public void addSymptom(Symptons b){
     	symptons.add(b);
+    
     }
     
     public List<Symptons> getSymptons(){
