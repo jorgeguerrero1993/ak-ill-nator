@@ -423,7 +423,3 @@ public class JDBCmanager implements Dbmanager{
 	}
 
 }
-
-
-
-

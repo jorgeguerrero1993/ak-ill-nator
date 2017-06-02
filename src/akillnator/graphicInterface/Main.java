@@ -1,5 +1,3 @@
-//EN EL UPDATE poner el condicional de si no meten nada
-
 package akillnator.graphicInterface;
 import akillnator.jbdc.*;
 
@@ -45,8 +43,7 @@ public class Main {
 		Integer answer=50;
 	 	while(answer!=0){
 			System.out.println(" MENU :"
-		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete \n 5.Update Patient \n 6.Obtain HTML \n 7.Add Symptom");
-	 	
+		 			+ "\n0.Exit \n 1. Add a patient \n 2.Create tables \n 3.Show patients \n 4.Delete \n 5.Update Patient \n 6.Obtain HTML \n 7.Add Symptom  \n8.Evaluate patient illness");
 			 try{
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				answer = Integer.parseInt(reader.readLine());
@@ -83,7 +80,6 @@ public class Main {
 					List <Patient> listpat = a.getAllPatients();
 					for (Patient patient : listpat) {
 						System.out.println(patient);
-						
 					}
 				
 				}
@@ -179,8 +175,10 @@ public class Main {
 					System.out.println(" Which one is it? \n ID :");
 					Integer id = Integer.parseInt(reader.readLine());
 					Patient oldPat=new Patient();
+					int idPatient=0;
 					for (Patient patient : patientListByName) {
 						if(patient.getId()==id){
+							idPatient=patient.getId();
 							oldPat=patient;
 							break;
 						}
@@ -191,14 +189,25 @@ public class Main {
 					for (Symptons symp : sympList) {
 						System.out.println(symp+" \n");
 					}
-					Integer id2 = Integer.parseInt(reader.readLine());
+					Integer idSympton = Integer.parseInt(reader.readLine());
 					System.out.println("Your symptom has been register");
-					Symptons patientsympton = a.getSymptom(id2);
-					oldPat.addSymptom(patientsympton);
-					
+//					Symptons patientsympton = a.getSymptom(id2);
+//					oldPat.addSymptom(patientsympton);
+					a.linkSymtonsPatient(idSympton, idPatient);					
 					
 				}
 				
+				if (answer==8){
+					System.out.println("Write the name of the patient that you\n want to evaluate :");
+					String name = reader.readLine();
+					List <Patient> patientListByName = a.searchByName(name);
+					for (Patient patient : patientListByName) {
+						System.out.println(patient+" \n");
+					}
+					System.out.println(" Which one is it? \n ID :");
+					Integer id = Integer.parseInt(reader.readLine());
+					System.out.println(a.diagnosis(id));
+				}
 			
 				
 
