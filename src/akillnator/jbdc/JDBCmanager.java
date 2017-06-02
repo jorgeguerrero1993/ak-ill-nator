@@ -227,7 +227,21 @@ public class JDBCmanager implements Dbmanager{
 			e.printStackTrace();
 		}	 
 	 }
-			
+		
+	 public void linkSymptonsIllness(int sympId,int illId){
+		 try {
+			String sql = "INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (?,?)";
+			PreparedStatement prepStmt=c.prepareStatement(sql);
+			prepStmt.setInt(1,sympId);
+			prepStmt.setInt(2,illId);
+			prepStmt.executeUpdate();
+			prepStmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+	 }
 			
 			
 	public void createTable(){
@@ -309,21 +323,10 @@ public class JDBCmanager implements Dbmanager{
 			"sympId INTEGER REFERENCES Symptons(id),"+
 			"illnessId INTEGER REFERENCES Illness(id),"+
 			"PRIMARY KEY(sympId,illnessId))");		
-			String sql = "INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (?,?)";
-			PreparedStatement prepStm = c.prepareStatement(sql);
-			prepStm.setInt(1,1);
-			prepStm.setInt(2, 1);
-			prepStm.executeUpdate();
-			prepStm.setInt(1,2);
-			prepStm.setInt(2, 2);
-			prepStm.executeUpdate();
-			prepStm.setInt(1,3);
-			prepStm.setInt(2, 3);
-			prepStm.executeUpdate();
-			prepStm.setInt(1,4);
-			prepStm.setInt(2,4);
-			prepStm.executeUpdate();
-			prepStm.close();
+			linkSymptonsIllness(1,1);
+			linkSymptonsIllness(2,2);
+			linkSymptonsIllness(3,3);
+			linkSymptonsIllness(4,4);
 			//Drugs - Treatment table
 			stmt.executeUpdate("CREATE TABLE DrugsTreatment("+
 			"drugsId INTEGER REFERENCES Drugs(id),"+
