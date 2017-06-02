@@ -320,8 +320,8 @@ public class JDBCmanager implements Dbmanager{
 			"PRIMARY KEY(prevId,sympId))");
 			//Symptons - Illness table reall
 			stmt.executeUpdate("CREATE TABLE SymptonsIllness("+
-			"sympId INTEGER REFERENCES Symptons(id),"+
-			"illnessId INTEGER REFERENCES Illness(id),"+
+			"sympId INTEGER NULL REFERENCES Symptons(id),"+
+			"illnessId INTEGER NULL REFERENCES Illness(id))"+
 			"PRIMARY KEY(sympId,illnessId))");		
 			linkSymptonsIllness(1,1);
 			linkSymptonsIllness(2,2);
