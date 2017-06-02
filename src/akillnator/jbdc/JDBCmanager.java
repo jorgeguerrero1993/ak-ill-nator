@@ -399,6 +399,7 @@ public class JDBCmanager implements Dbmanager{
 			stm.setInt(idSymton,1);
 			stm.setInt(idPatient,2);
 			stm.executeUpdate();
+			stm.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

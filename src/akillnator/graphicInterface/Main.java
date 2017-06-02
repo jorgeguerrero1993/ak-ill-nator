@@ -177,8 +177,10 @@ public class Main {
 					System.out.println(" Which one is it? \n ID :");
 					Integer id = Integer.parseInt(reader.readLine());
 					Patient oldPat=new Patient();
+					int idPatient=0;
 					for (Patient patient : patientListByName) {
 						if(patient.getId()==id){
+							idPatient=patient.getId();
 							oldPat=patient;
 							break;
 						}
@@ -189,11 +191,11 @@ public class Main {
 					for (Symptons symp : sympList) {
 						System.out.println(symp+" \n");
 					}
-					Integer id2 = Integer.parseInt(reader.readLine());
+					Integer idSympton = Integer.parseInt(reader.readLine());
 					System.out.println("Your symptom has been register");
-					Symptons patientsympton = a.getSymptom(id2);
-					oldPat.addSymptom(patientsympton);
-					
+//					Symptons patientsympton = a.getSymptom(id2);
+//					oldPat.addSymptom(patientsympton);
+					a.linkSymtonsPatient(idSympton, idPatient);					
 					
 				}
 				
