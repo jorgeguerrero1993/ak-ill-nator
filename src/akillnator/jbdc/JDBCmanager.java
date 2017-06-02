@@ -405,6 +405,20 @@ public class JDBCmanager implements Dbmanager{
 		}
 		
 	}
+	
+	public String diagnosis(int idPatient){
+		try {
+			String sql = "SELECT i.name FROM Ilness AS i JOIN SymptonsIllness AS si ON i.id=si.illnessId JOIN PatientSymptons AS ps ON si.sympId=ps.sympId WHERE patId=?";
+			PreparedStatement stm = c.prepareStatement(sql);
+			stm.setInt(idPatient,1);
+			ResultSet rs = stm.executeQuery();
+			stm.close();
+			return rs.getString("name");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "Error"; 
+	}
 
 }
 

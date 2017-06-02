@@ -200,7 +200,15 @@ public class Main {
 				}
 				
 				if (answer==8){
-					
+					System.out.println("Write the name of the patient that you\n want to evaluate :");
+					String name = reader.readLine();
+					List <Patient> patientListByName = a.searchByName(name);
+					for (Patient patient : patientListByName) {
+						System.out.println(patient+" \n");
+					}
+					System.out.println(" Which one is it? \n ID :");
+					Integer id = Integer.parseInt(reader.readLine());
+					System.out.println(a.diagnosis(id));
 				}
 			
 				
