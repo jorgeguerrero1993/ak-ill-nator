@@ -183,7 +183,7 @@ public class JDBCmanager implements Dbmanager{
 
 	 public void insertIllness(int id, String name, String type, String aproxDuration, int treatmentId) throws SQLException{
      	try{
-    		String sql = "INSERT INTO Illness (id, name, type, aprox_duration, treatment_id" + "VALUES (?,?,?,?,?)";
+    		String sql = "INSERT INTO Illness (id, name, type, aprox_duration, treatment_id) VALUES (?,?,?,?,?)";
             PreparedStatement stmt1=c.prepareStatement(sql);
         	stmt1.setInt(1,id);
         	stmt1.setString(2,name);
