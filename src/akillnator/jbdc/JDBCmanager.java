@@ -226,9 +226,7 @@ public class JDBCmanager implements Dbmanager{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		 
-		 
+		}	 
 	 }
 			
 			
@@ -278,11 +276,6 @@ public class JDBCmanager implements Dbmanager{
 			insertIllness(3,"Apendicitis","Bacterial infection","2-3 days in hospital + few weeks.",3);
 			insertIllness(4, "Stomach flu", "Viral or bacterial", "24 hours", 4);
 			
-           
-        
-			
-//////////////USAR LAS FUNCIONES INSERTAR PARA RELLENAR 
-//////////////LAS TABLAS SINTOMAS Y TRATAMIENTO
 			
 			//Treatment table
 			stmt.executeUpdate("CREATE TABLE Treatment("+
@@ -408,12 +401,17 @@ public class JDBCmanager implements Dbmanager{
 	
 	public String diagnosis(int idPatient){
 		try {
-			String sql = "SELECT i.name FROM Ilness AS i JOIN SymptonsIllness AS si ON i.id=si.illnessId JOIN PatientSymptons AS ps ON si.sympId=ps.sympId WHERE patId=?";
+			String sql = "SELECT i.name FROM Illness AS i JOIN SymptonsIllness AS si ON i.id=si.illnessId JOIN PatientSymptons AS ps ON si.sympId=ps.sympId WHERE patId=?";
 			PreparedStatement stm = c.prepareStatement(sql);
 			stm.setInt(idPatient,1);
 			ResultSet rs = stm.executeQuery();
+			String returned="";
+			while(rs.next()){
+				returned=rs.getString("name");
+			}
 			stm.close();
-			return rs.getString("name");
+			return returned;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
