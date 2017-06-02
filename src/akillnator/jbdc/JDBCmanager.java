@@ -63,7 +63,6 @@ public class JDBCmanager implements Dbmanager{
 		
 		}
 		 catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}
@@ -275,8 +274,6 @@ public class JDBCmanager implements Dbmanager{
 			insertIllness(2,"High fever","Genetic","Cronic ilness",2);
 			insertIllness(3,"Apendicitis","Bacterial infection","2-3 days in hospital + few weeks.",3);
 			insertIllness(4, "Stomach flu", "Viral or bacterial", "24 hours", 4);
-			
-			
 			//Treatment table
 			stmt.executeUpdate("CREATE TABLE Treatment("+
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
@@ -287,6 +284,8 @@ public class JDBCmanager implements Dbmanager{
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
 			"illness_id INTEGER REFERENCES Illness(id))");
+			
+			
 			//Patient-Previous events table
 			stmt.executeUpdate("CREATE TABLE PatientPrevEvents("+
 			"patId INTEGER REFERENCES Patient(id),"+
@@ -344,7 +343,7 @@ public class JDBCmanager implements Dbmanager{
 		}
 		
 	}
-	//Poner en un futuro mas tipos de delete
+
 	public void deletePatient(int id)throws SQLException{
 		String sql = "DELETE FROM patient WHERE id = ?";
 		PreparedStatement prep = c.prepareStatement(sql);

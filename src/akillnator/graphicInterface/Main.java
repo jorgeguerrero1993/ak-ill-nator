@@ -1,8 +1,7 @@
 package akillnator.graphicInterface;
+
 import akillnator.jbdc.*;
-
 import akillnator.xml.*;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -11,14 +10,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
 import org.xml.sax.helpers.ParserFactory;
-
 import akillnator.jbdc.JDBCmanager;
 import akillnator.pojo.Patient;
 import akillnator.pojo.Symptons;
@@ -36,7 +32,6 @@ public class Main {
 		}
 	}
 
-	
 	
 	public static void main(String[] args) {
 		JDBCmanager a= new JDBCmanager();
@@ -159,7 +154,6 @@ public class Main {
 					}
 					XMLmanager manager = new XMLmanager();
 					manager.marshalling(oldPat);
-					//simpleTransform("./xmls/Patients.xml" ,"./akillnator.xml.html/akillnator.xslt","./akillnator.xml.html/PruebaHTML.html");
 					simpleTransform("C:/SPB_Data/git/ak-ill-nator/xmls/Patients.xml" ,"C:/SPB_Data/git/ak-ill-nator/src/akillnator/xml/akillnator.xslt","C:/SPB_Data/git/ak-ill-nator/generatedHtml/PruebaHTML.html");
 				}
 				
@@ -190,8 +184,6 @@ public class Main {
 					}
 					Integer idSympton = Integer.parseInt(reader.readLine());
 					System.out.println("Your symptom has been register");
-//					Symptons patientsympton = a.getSymptom(id2);
-//					oldPat.addSymptom(patientsympton);
 					a.linkSymtonsPatient(idSympton, idPatient);					
 					
 				}
