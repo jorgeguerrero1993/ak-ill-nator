@@ -246,10 +246,10 @@ public class JDBCmanager implements Dbmanager{
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT,"+
 			"type TEXT)");
-			insertSymptons(1,"hot temperature","external");
-			insertSymptons(2,"sneeze mucus","external");
-			insertSymptons(3,"pain in the button","internal");
-			insertSymptons(4,"stamach ache","internal");
+			insertSymptons(1,"Hot head","external");
+			insertSymptons(2,"Sneeze, mucus","external");
+			insertSymptons(3,"Pain in the belly button","internal");
+			insertSymptons(4,"Stomach ache","internal");
 			insertSymptons(5,"none","none");
 			//Previous events table
 			stmt.executeUpdate("CREATE TABLE PreviousEvents("+
@@ -309,7 +309,11 @@ public class JDBCmanager implements Dbmanager{
 			stmt.executeUpdate("CREATE TABLE SymptonsIllness("+
 			"sympId INTEGER REFERENCES Symptons(id),"+
 			"illnessId INTEGER REFERENCES Illness(id),"+
-			"PRIMARY KEY(sympId,illnessId))");
+			"PRIMARY KEY(sympId,illnessId))");		
+			stmt.executeUpdate("INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (1,1)");
+			stmt.executeUpdate("INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (2,2)");
+			stmt.executeUpdate("INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (3,3)");
+			stmt.executeUpdate("INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (4,4)");
 			//Drugs - Treatment table
 			stmt.executeUpdate("CREATE TABLE DrugsTreatment("+
 			"drugsId INTEGER REFERENCES Drugs(id),"+
