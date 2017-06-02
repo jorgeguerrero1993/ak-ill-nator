@@ -73,7 +73,7 @@ public class Main {
 					a.insertPatient(abe);
 				}
 				if(answer==2){
-
+					a.createTable();
 				}
 				if(answer==3){
                    
