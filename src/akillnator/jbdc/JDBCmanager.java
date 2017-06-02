@@ -310,10 +310,21 @@ public class JDBCmanager implements Dbmanager{
 			"sympId INTEGER REFERENCES Symptons(id),"+
 			"illnessId INTEGER REFERENCES Illness(id),"+
 			"PRIMARY KEY(sympId,illnessId))");		
-			stmt.executeUpdate("INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (1,1)");
-			stmt.executeUpdate("INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (2,2)");
-			stmt.executeUpdate("INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (3,3)");
-			stmt.executeUpdate("INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (4,4)");
+			String sql = "INSERT INTO SymptonsIllness (sympId,illnessId) VALUES (?,?)";
+			PreparedStatement prepStm = c.prepareStatement(sql);
+			prepStm.setInt(1,1);
+			prepStm.setInt(2, 1);
+			prepStm.executeUpdate();
+			prepStm.setInt(1,2);
+			prepStm.setInt(2, 2);
+			prepStm.executeUpdate();
+			prepStm.setInt(1,3);
+			prepStm.setInt(2, 3);
+			prepStm.executeUpdate();
+			prepStm.setInt(1,4);
+			prepStm.setInt(2, 4);
+			prepStm.executeUpdate();
+			
 			//Drugs - Treatment table
 			stmt.executeUpdate("CREATE TABLE DrugsTreatment("+
 			"drugsId INTEGER REFERENCES Drugs(id),"+
@@ -391,7 +402,7 @@ public class JDBCmanager implements Dbmanager{
 	
 	public void linkSymtonsPatient(int idSymton, int idPatient){
 		try {
-			String sql = "INSERT INTO PatientSymptons (sympId, patID) VALUES(?,?)";
+			String sql = "INSERT INTO PatientSymptons (sympId, patID) VALUES (?,?)";
 			PreparedStatement stm = c.prepareStatement(sql);
 			stm.setInt(idSymton,1);
 			stm.setInt(idPatient,2);
