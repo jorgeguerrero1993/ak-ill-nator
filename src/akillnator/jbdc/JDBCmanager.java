@@ -372,10 +372,11 @@ public class JDBCmanager implements Dbmanager{
 	
 	public void linkSymtonsPatient(int idSymton, int idPatient){
 		try {
-			String sql = "UPDATE PatientSymptons SET sympId=? WHERE patID=?";
+			String sql = "INSERT INTO PatientSymptons (sympId, patID) VALUES(?,?)";
 			PreparedStatement stm = c.prepareStatement(sql);
 			stm.setInt(idSymton,1);
 			stm.setInt(idPatient,2);
+			stm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
