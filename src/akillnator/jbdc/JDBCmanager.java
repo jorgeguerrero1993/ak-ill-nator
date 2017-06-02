@@ -202,7 +202,7 @@ public class JDBCmanager implements Dbmanager{
 	 public void insertSymptons(int id, String name, String type){
 		
 		 try {
-			String sql = "INSERT Symptons id=?, name=?, type=?";
+			String sql = "INSERT INTO Symptons (id,name,type) VALUES (?,?,?)";
 			PreparedStatement stmt1=c.prepareStatement(sql);
 			stmt1.setInt(1,id);
 			stmt1.setString(2,name);
@@ -216,7 +216,7 @@ public class JDBCmanager implements Dbmanager{
 	 
 	 public void insertTreatment(int id, String name, String type){
 		 try {
-			String sql = "INSERT Treatment id=?, name=?, type=?";
+			String sql = "INSERT INTO Treatment (id,name,type) VALUES (?,?,?)";
 			PreparedStatement stmt1=c.prepareStatement(sql);
 			stmt1.setInt(1,id);
 			stmt1.setString(2,name);
